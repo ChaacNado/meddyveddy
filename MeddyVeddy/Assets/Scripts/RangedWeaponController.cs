@@ -25,4 +25,12 @@ public class RangedWeaponController : MonoBehaviour
         equippedRw = Instantiate(rwToEquip, weaponHold.position, weaponHold.rotation) as RangedWeapon;
         equippedRw.transform.parent = weaponHold;
     }
+
+    public void Shoot()
+    {
+        if (equippedRw != null)
+        {
+            equippedRw.Shoot();
+        }
+    }
 }
