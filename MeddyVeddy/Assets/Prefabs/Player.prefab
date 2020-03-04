@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 1532146508573318038}
   - component: {fileID: 1532146508573318039}
   - component: {fileID: -6909515615258618103}
+  - component: {fileID: -8146252497673941538}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -200,3 +201,17 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &-8146252497673941538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1532146508573318024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25ca6c14225927c44a43a1f8ce2ee4ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponHold: {fileID: 0}
+  startingWeapon: {fileID: 0}
