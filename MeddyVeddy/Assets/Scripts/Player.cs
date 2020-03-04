@@ -22,14 +22,17 @@ public class Player : MonoBehaviour
         Vector3 moveVelocity = moveInput.normalized * moveSpeed;
         controller.Move(moveVelocity);
 
+        #region Raycast from viewCamera to groundPlane
         Ray ray = viewCamera.ScreenPointToRay(Input.mousePosition);
         Plane groundPlane = new Plane(Vector3.up, Vector3.zero);
         float rayDistance;
 
-        if(groundPlane.Raycast(ray, out rayDistance))
+        if (groundPlane.Raycast(ray, out rayDistance))
         {
             Vector3 point = ray.GetPoint(rayDistance);
-            Debug.DrawLine(ray.origin, point, Color.red);
+            //Debug.DrawLine(ray.origin, point, Color.red); /* Visualize the raycast*/
+            controller.LookAt(point);
         }
+        #endregion
     }
 }
