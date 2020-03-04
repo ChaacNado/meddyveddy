@@ -29,6 +29,10 @@ public class createRoom : MonoBehaviour
                 testDoors[i, j] = false;
             }
         }
+        testWalls[2, 1] = true;
+        testWalls[2, 2] = true;
+        testWalls[2, 3] = true;
+        testWalls[2, 4] = true;
         Create(roomSizeX, roomSizeZ, testWalls, testEnemies, testDoors);
     }
 
