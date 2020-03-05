@@ -13,10 +13,26 @@ public class Enemy : MonoBehaviour
     {
         pathFinder = GetComponent<NavMeshAgent>();
         target = GameObject.FindGameObjectWithTag("Player").transform;
+
+        StartCoroutine(UpdatePath());
     }
 
     void Update()
     {
-        pathFinder.SetDestination(target.position);
+        
+    }
+
+    /// Once called, the loop will go through every refreshRate
+    /// To avoid recalculating the path every frame, which can be quite expensive
+    IEnumerator UpdatePath()
+    {
+        float refreshRate = 0.25f; /* How often in seconds the agent will update its path */
+
+        while(target != null)
+        {
+            Vector3 targetPosition = new Vector3(target.position.x, 0, target.position.z);
+            pathFinder.SetDestination(targetPosition);
+            yield return new WaitForSeconds(refreshRate);
+        }
     }
 }
