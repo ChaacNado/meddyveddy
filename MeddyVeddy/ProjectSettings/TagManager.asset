@@ -6,6 +6,7 @@ TagManager:
   tags:
   - wall
   - Room
+  - Door
   layers:
   - Default
   - TransparentFX

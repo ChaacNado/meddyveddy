@@ -7,7 +7,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public float moveSpeed = 5;
-
+    public List<string> Keys = new List<string>();
     Camera viewCamera;
     PlayerController controller;
     RangedWeaponController rwController;

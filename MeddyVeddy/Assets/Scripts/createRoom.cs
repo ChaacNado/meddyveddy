@@ -5,14 +5,18 @@ using UnityEngine;
 public class createRoom : MonoBehaviour
 {
     public GameObject wallPiece;
+    public GameObject door;
     public int offsetX = 1, offsetZ = 1;
     List<GameObject> walls = new List<GameObject>();
+
+    public int RoomID;
 
     void Start()
     {
         //Test
         int roomSizeX = 11, roomSizeZ = 11;
-        bool[,] testWalls = new bool[roomSizeX,roomSizeZ], testEnemies = new bool[roomSizeX, roomSizeZ], testDoors = new bool[roomSizeX, roomSizeZ];
+        bool[,] testWalls = new bool[roomSizeX, roomSizeZ], testEnemies = new bool[roomSizeX, roomSizeZ];
+        string [,] testDoors = new string[roomSizeX, roomSizeZ];
         for (int i = 0; i < testWalls.GetLength(0); i++)
         {
             for (int j = 0; j < testWalls.GetLength(1); j++)
@@ -26,14 +30,14 @@ public class createRoom : MonoBehaviour
                     testWalls[i, j] = false;
                 }
                 testEnemies[i, j] = false;
-                testDoors[i, j] = false;
+                testDoors[i, j] = "";
             }
         }
         //testWalls[2, 1] = true;
         testWalls[2, 2] = true;
         testWalls[2, 3] = true;
         testWalls[2, 4] = true;
-        Create(roomSizeX, roomSizeZ, testWalls, testEnemies, testDoors);
+        Create(0, roomSizeX, roomSizeZ, testWalls, testEnemies, testDoors);
     }
 
     void Update()
@@ -41,8 +45,9 @@ public class createRoom : MonoBehaviour
         
     }
 
-    public void Create(int roomSizeX, int roomSizeZ, bool[,] walls, bool[,] enemies, bool[,] doors)
+    public void Create(int roomNbr, int roomSizeX, int roomSizeZ, bool[,] walls, bool[,] enemies, string[,] doors)
     {
+        RoomID = roomNbr;
         GameObject go;
         Vector3 offset;
         for (int i = 0/*-(roomSizeX / 2)*/; i < roomSizeX; i++)
