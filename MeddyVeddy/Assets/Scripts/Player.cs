@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     Camera viewCamera;
     PlayerController controller;
     RangedWeaponController rwController;
-
+    public int currentRoomID = 0;
     void Start()
     {
         controller = GetComponent<PlayerController>();

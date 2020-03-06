@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 7249204664565090530}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -141,6 +141,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
+  Keys: []
+  currentRoomID: 0
 --- !u!114 &-8146252497673941538
 MonoBehaviour:
   m_ObjectHideFlags: 0
