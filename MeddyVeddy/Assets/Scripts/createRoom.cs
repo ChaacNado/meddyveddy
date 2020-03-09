@@ -40,7 +40,7 @@ public class createRoom : MonoBehaviour
         testWalls[2, 3] = true;
         testWalls[2, 4] = true;
         testEnemies[7, 7] = true;
-        Create(0, roomSizeX, roomSizeZ, testWalls, testEnemies, testDoors);
+        //Create(0, roomSizeX, roomSizeZ, testWalls, testEnemies, testDoors);
     }
 
     void Update()
@@ -64,6 +64,7 @@ public class createRoom : MonoBehaviour
     {
         RoomID = roomNbr;
         Vector3 offset;
+        Vector3 roomOffset = new Vector3(RoomID * 50,0,RoomID * 50);
         for (int i = 0/*-(roomSizeX / 2)*/; i < roomSizeX; i++)
         {
             for (int j = 0/*-(roomSizeZ / 2)*/; j < roomSizeZ; j++)
@@ -71,7 +72,7 @@ public class createRoom : MonoBehaviour
                 if (enemies[i,j] == true)
                 {
                     Enemy go;
-                    offset = new Vector3((i * offsetX) - (roomSizeX / 2), 1, (j * offsetZ) - (roomSizeZ / 2));
+                    offset = roomOffset + new Vector3((i * offsetX) - (roomSizeX / 2), 1, (j * offsetZ) - (roomSizeZ / 2));
                     go = Instantiate(enemy) as Enemy;
                     go.transform.position = /*transform.position +*/ offset;
                     go.transform.SetParent(gameObject.transform);
@@ -79,7 +80,7 @@ public class createRoom : MonoBehaviour
                 if (walls[i,j] == true)
                 {
                     GameObject go;
-                    offset = new Vector3((i * offsetX) - (roomSizeX / 2), 1, (j * offsetZ) - (roomSizeZ / 2));
+                    offset = roomOffset + new Vector3((i * offsetX) - (roomSizeX / 2), 1, (j * offsetZ) - (roomSizeZ / 2));
                     go = Instantiate(wallPiece);
                     go.transform.position = /*transform.position + */offset;
                     go.transform.SetParent(gameObject.transform);
