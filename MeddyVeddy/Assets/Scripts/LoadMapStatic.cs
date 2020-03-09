@@ -23,7 +23,7 @@ public static class LoadMapStatic
         bool[,] walls = new bool[x, z];
         bool[,] enemies = new bool[x, z];
         bool[,] treasure = new bool[x, z];
-        string[,] doors = new string[x, z];
+        string[,] doors = doorsToString(x, z, r);
 
         for (int i = 0; i < r.Tiles.Length; i++)
         {
@@ -40,5 +40,25 @@ public static class LoadMapStatic
         newRoom.GetComponent<createRoom>().Create(roomID, x, z, walls, enemies, doors);
 
         return room;
+    }
+
+    public static string[,] doorsToString(int x, int y, RoomModel r)
+    {
+        string[,] doors = new string[x, y];
+        for(int i = 0; i < x; i++)
+        {
+            for(int j = 0; j < y; j++)
+            {
+                doors[i, j] = "0";
+            }
+        }
+        foreach(RoomEdgeModel rem in r.ConnectingRoomIDs)
+        {
+            int posX = (int)rem.StartDoorPosition.x;
+            int posY = (int)rem.StartDoorPosition.y;
+            doors[posX, posY] = "1," + rem.TargetDoorPosition.x + "," + rem.TargetDoorPosition.y + "," + rem.ToRoomID;
+        }
+
+        return doors;
     }
 }

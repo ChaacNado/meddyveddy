@@ -49,4 +49,6 @@ MonoBehaviour:
   enemy: {fileID: 1858548003856420757, guid: ab007a8106c4e5f4aaaafd6de5e6dd54, type: 3}
   offsetX: 1
   offsetZ: 1
+  playerToCreate: {fileID: 1532146508573318024, guid: e2f501bda41fc7040a1593a5d2710fe4,
+    type: 3}
   RoomID: 0
