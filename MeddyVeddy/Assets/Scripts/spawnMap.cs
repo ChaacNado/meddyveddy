@@ -16,7 +16,7 @@ public class spawnMap : MonoBehaviour
 
         if (fileInfo.Exists)
         {
-            Debug.Log("funkar");
+            //Debug.Log("funkar");
             LoadMapStatic.LoadMap(path, Dungeon, Room);
         }
         // LoadMapStatic.LoadMap(System.IO.Directory.GetCurrentDirectory() + "/Assets/Maps/testMap.xml");

@@ -4,7 +4,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(PlayerController))]
 [RequireComponent(typeof(RangedWeaponController))]
-public class Player : MonoBehaviour
+public class Player : LivingEntity 
 {
     public float moveSpeed = 5;
     public List<string> Keys = new List<string>();
@@ -12,8 +12,10 @@ public class Player : MonoBehaviour
     PlayerController controller;
     RangedWeaponController rwController;
     public int currentRoomID = 0;
-    void Start()
+
+    public override void Start()
     {
+        base.Start();
         controller = GetComponent<PlayerController>();
         rwController = GetComponent<RangedWeaponController>();
         viewCamera = Camera.main;
