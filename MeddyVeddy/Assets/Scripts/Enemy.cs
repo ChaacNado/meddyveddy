@@ -11,6 +11,9 @@ public class Enemy : LivingEntity
 
     NavMeshAgent pathFinder;
     Transform target;
+    Material skinMaterial;
+
+    Color originalColor;
 
     float attackDistanceThreshold = 1.5f;
     float timeBetweenAttacks = 1;
@@ -23,6 +26,8 @@ public class Enemy : LivingEntity
     {
         base.Start();
         pathFinder = GetComponent<NavMeshAgent>();
+        skinMaterial = GetComponent<Renderer>().material;
+        originalColor = skinMaterial.color;
 
         currentState = State.Chasing;
         target = GameObject.FindGameObjectWithTag("Player").transform;
@@ -38,7 +43,7 @@ public class Enemy : LivingEntity
         if (Time.time > nextAttackTime)
         {
             float sqrDstToTarget = (target.position - transform.position).sqrMagnitude; /* Distance in squared form */
-            if (sqrDstToTarget < Mathf.Pow(attackDistanceThreshold, 2))
+            if (sqrDstToTarget < Mathf.Pow(attackDistanceThreshold + myCollisionRadius + targetCollisionRadius, 2))
             {
                 nextAttackTime = Time.time + timeBetweenAttacks;
                 StartCoroutine(Attack());
@@ -52,10 +57,13 @@ public class Enemy : LivingEntity
         pathFinder.enabled = false; /* Stops the pathfinder while attacking */
 
         Vector3 originalPosition = transform.position;
-        Vector3 attackPosition = target.position;
+        Vector3 dirToTarget = (target.position - transform.position).normalized;
+        Vector3 attackPosition = target.position - dirToTarget * myCollisionRadius;
 
         float attackSpeed = 3;
         float percent = 0;
+
+        skinMaterial.color = Color.red;
 
         while (percent <= 1)
         {
@@ -67,6 +75,7 @@ public class Enemy : LivingEntity
             yield return null;
         }
 
+        skinMaterial.color = originalColor;
         currentState = State.Chasing;
         pathFinder.enabled = true; /* Resumes the pathfinding after attacking */
     }
