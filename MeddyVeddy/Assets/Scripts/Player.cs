@@ -13,7 +13,7 @@ public class Player : LivingEntity
     RangedWeaponController rwController;
     public int currentRoomID = 0;
 
-    public override void Start()
+    protected override void Start()
     {
         base.Start();
         controller = GetComponent<PlayerController>();
