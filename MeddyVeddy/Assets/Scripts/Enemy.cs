@@ -6,7 +6,7 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class Enemy : LivingEntity
 {
-    public enum State { Idle, Chasing, Attacking};
+    public enum State { Idle, Chasing, Attacking };
     State currentState;
 
     NavMeshAgent pathFinder;
@@ -16,6 +16,8 @@ public class Enemy : LivingEntity
     float timeBetweenAttacks = 1;
 
     float nextAttackTime;
+    float myCollisionRadius;
+    float targetCollisionRadius;
 
     protected override void Start()
     {
@@ -24,6 +26,9 @@ public class Enemy : LivingEntity
 
         currentState = State.Chasing;
         target = GameObject.FindGameObjectWithTag("Player").transform;
+
+        myCollisionRadius = GetComponent<CapsuleCollider>().radius;
+        targetCollisionRadius = target.GetComponent<CapsuleCollider>().radius;
 
         StartCoroutine(UpdatePath());
     }
@@ -74,14 +79,15 @@ public class Enemy : LivingEntity
 
         while (target != null)
         {
-            if(currentState == State.Chasing)
+            if (currentState == State.Chasing)
             {
-                Vector3 targetPosition = new Vector3(target.position.x, 0, target.position.z);
+                Vector3 dirToTarget = (target.position - transform.position).normalized;
+                Vector3 targetPosition = target.position - dirToTarget * (myCollisionRadius + targetCollisionRadius + attackDistanceThreshold / 2);
                 if (!dead)
                 {
                     pathFinder.SetDestination(targetPosition);
                 }
-                
+
             }
             yield return new WaitForSeconds(refreshRate);
         }
