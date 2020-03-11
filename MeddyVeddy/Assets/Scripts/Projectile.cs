@@ -8,6 +8,20 @@ public class Projectile : MonoBehaviour
     float speed = 10;
     float damage = 1;
 
+    float lifeTime = 3;
+    float rayExtendingLength = 0.1f;  /* Used to extend the length of the ray, in order to hit quick moving objects effectively */
+
+    void Start()
+    {
+        Destroy(gameObject, lifeTime);
+
+        Collider[] initialCollisions = Physics.OverlapSphere(transform.position, 0.1f, collisionMask);
+        if(initialCollisions.Length > 0)
+        {
+            OnHitObject(initialCollisions[0]);
+        }
+    }
+
     public void SetSpeed(float newSpeed)
     {
         speed = newSpeed;
@@ -26,7 +40,7 @@ public class Projectile : MonoBehaviour
         RaycastHit hit;
 
         /// If the ray is hitting that object...
-        if (Physics.Raycast(ray, out hit, moveDistance, collisionMask, QueryTriggerInteraction.Collide))
+        if (Physics.Raycast(ray, out hit, moveDistance + rayExtendingLength, collisionMask, QueryTriggerInteraction.Collide))
             /* QueryTriggerInteraction allows us to set whether or not this will collide with trigger-colliders */
         {
             OnHitObject(hit);
@@ -40,7 +54,16 @@ public class Projectile : MonoBehaviour
         {
             damageableObject.TakeHit(damage, hit);
         }
-        print(hit.collider.gameObject.name);
+        Destroy(gameObject);
+    }
+
+    void OnHitObject(Collider c)
+    {
+        IDamageable damageableObject = c.GetComponent<IDamageable>();
+        if (damageableObject != null)
+        {
+            damageableObject.TakeDamage(damage);
+        }
         Destroy(gameObject);
     }
 }
