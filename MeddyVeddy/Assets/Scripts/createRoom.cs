@@ -133,11 +133,18 @@ public class createRoom : MonoBehaviour
     }
     public void CreateEnemy(int x, int z, Vector3 roomOffset, int roomSizeX, int roomSizeZ)
     {
+        string holderName = "Generated Enemies";
+        if (!transform.Find(holderName))
+        {
+            Transform enemyHolder = new GameObject(holderName).transform;
+            enemyHolder.parent = transform;
+        }
         Enemy go;
         Vector3 offset = roomOffset + new Vector3((x * offsetX) - (roomSizeX / 2), 1, (z * offsetZ) - (roomSizeZ / 2));
         go = Instantiate(enemy) as Enemy;
         go.transform.position = /*transform.position +*/ offset;
         go.transform.SetParent(gameObject.transform);
+        go.transform.parent = transform.Find(holderName);
     }
     public void CreateDoor(int x, int z, Vector3 roomOffset, int roomSizeX, int roomSizeZ, string doorString)
     {
