@@ -117,11 +117,19 @@ public class createRoom : MonoBehaviour
 
     public void CreateWall(int x, int z, Vector3 roomOffset, int roomSizeX, int roomSizeZ)
     {
+        string holderName = "Generated Walls";
+        if (!transform.Find(holderName))
+        {
+            Transform wallHolder = new GameObject(holderName).transform;
+            wallHolder.parent = transform;
+        }
+
         GameObject go;
         Vector3 offset = roomOffset + new Vector3((x * offsetX) - (roomSizeX / 2), 1, (z * offsetZ) - (roomSizeZ / 2));
         go = Instantiate(wallPiece);
         go.transform.position = /*transform.position + */offset;
         go.transform.SetParent(gameObject.transform);
+        go.transform.parent = transform.Find(holderName);
     }
     public void CreateEnemy(int x, int z, Vector3 roomOffset, int roomSizeX, int roomSizeZ)
     {
