@@ -13,7 +13,7 @@ public class createRoom : MonoBehaviour
     public GameObject playerToCreate;
     public int RoomID;
     bool created = false;
-
+    public List<GameObject> doors = new List<GameObject>();
     void Start()
     {
         //Test
@@ -74,18 +74,17 @@ public class createRoom : MonoBehaviour
                 {
                     CreateEnemy(i, j, roomOffset, roomSizeX, roomSizeZ);
                 }
-                if (walls[i,j] == true)
+                else if (walls[i,j] == true)
                 {
                     CreateWall(i, j, roomOffset, roomSizeX, roomSizeZ);
-                }else if (RoomID == 0 && Player == null)
+                }else if (!doors[i, j].Equals("0"))
+                {
+                    CreateDoor(i, j, roomOffset, roomSizeX, roomSizeZ, doors[i, j]);
+                } else if (RoomID == 0 && Player == null)
                 {
                     GameObject go = Instantiate(playerToCreate);
                     go.transform.position = roomOffset + new Vector3((i * offsetX) - (roomSizeX / 2), 1, (j * offsetZ) - (roomSizeZ / 2));
                     Player = go;
-                }
-                if (!doors[i, j].Equals("0"))
-                {
-                    CreateDoor(i, j, roomOffset, roomSizeX, roomSizeZ, doors[i, j]);
                 }
             }
         }
@@ -117,7 +116,7 @@ public class createRoom : MonoBehaviour
 
     public void CreateWall(int x, int z, Vector3 roomOffset, int roomSizeX, int roomSizeZ)
     {
-        string holderName = "Generated Walls";
+        string holderName = "Generated Walls" + RoomID;
         /// Creates a child for "Room" during runtime, which will hold all the room's walls
         if (!transform.Find(holderName))
         {
@@ -134,7 +133,7 @@ public class createRoom : MonoBehaviour
     }
     public void CreateEnemy(int x, int z, Vector3 roomOffset, int roomSizeX, int roomSizeZ)
     {
-        string holderName = "Generated Enemies";
+        string holderName = "Generated Enemies" + RoomID;
         /// Creates a child for "Room" during runtime, which will hold all the room's enemies
         if (!transform.Find(holderName))
         {
@@ -151,6 +150,15 @@ public class createRoom : MonoBehaviour
     }
     public void CreateDoor(int x, int z, Vector3 roomOffset, int roomSizeX, int roomSizeZ, string doorString)
     {
-
+        GameObject go;
+        Vector3 offset = roomOffset + new Vector3((x * offsetX) - (roomSizeX / 2), 1, (z * offsetZ) - (roomSizeZ / 2));
+        go = Instantiate(door);
+        go.transform.position = /*transform.position + */offset;
+        //go.transform.SetParent(gameObject.transform);
+        go.transform.parent = transform;
+        string[] splitDoorString = doorString.Split(',');
+        go.GetComponent<DoorScript>().targetRoomID = int.Parse(splitDoorString[3]);
+        go.GetComponent<DoorScript>().posOfTarget = new Vector2(int.Parse(splitDoorString[1]), int.Parse(splitDoorString[2]));
+        doors.Add(go);
     }
 }

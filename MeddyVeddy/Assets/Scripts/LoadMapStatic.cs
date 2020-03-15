@@ -8,13 +8,27 @@ using System.Xml.Serialization;
 public static class LoadMapStatic
 {
     public static GameObject Dungeon;
+    public static List<GameObject> rooms = new List<GameObject>();
     public static void LoadMap(string filePath, GameObject dungeon, GameObject room)
     {
         DungeonModel dungeonModel = DeSerializer.DeserializeXMLFileToObject<DungeonModel>(filePath);
         Dungeon = GameObject.Instantiate(dungeon);
         foreach(RoomModel r in dungeonModel.Rooms)
         {
-            CallCreateRoom(r, room);
+            rooms.Add(CallCreateRoom(r, room));
+        }
+        foreach(GameObject r in rooms)
+        {
+            foreach(GameObject d in r.GetComponent<createRoom>().doors)
+            {
+                foreach (GameObject target in rooms)
+                {
+                    if (target.GetComponent<createRoom>().RoomID == d.GetComponent<DoorScript>().targetRoomID)
+                    {
+                        d.GetComponent<DoorScript>().TargetRoom = target;
+                    }
+                }
+            }
         }
     }
     public static GameObject CallCreateRoom(RoomModel r, GameObject room)
@@ -39,7 +53,7 @@ public static class LoadMapStatic
         GameObject newRoom = GameObject.Instantiate(room);
         newRoom.GetComponent<createRoom>().Create(roomID, x, z, walls, enemies, doors);
 
-        return room;
+        return newRoom;
     }
 
     public static string[,] doorsToString(int x, int y, RoomModel r)

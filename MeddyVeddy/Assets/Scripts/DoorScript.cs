@@ -5,7 +5,9 @@ using UnityEngine;
 public class DoorScript : MonoBehaviour
 {
     public string KeyID = "unlocked";
-    public GameObject TargetDoor = null;
+    public GameObject TargetRoom = null;
+    public int targetRoomID;
+    public Vector2 posOfTarget;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,9 +20,14 @@ public class DoorScript : MonoBehaviour
         
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        TryEnter(other.gameObject);
+    }
+
     public void TryEnter(GameObject caller)
     {
-        if (TargetDoor == null)
+        if (TargetRoom == null)
             return;
         if (KeyID.Equals("unlocked"))
             Enter(caller);
@@ -35,6 +42,7 @@ public class DoorScript : MonoBehaviour
 
     public void Enter(GameObject caller)
     {
-
+        TargetRoom.SetActive(true);
+        caller.GetComponent<Player>().currentRoomID = TargetRoom.GetComponent<createRoom>().RoomID;
     }
 }
