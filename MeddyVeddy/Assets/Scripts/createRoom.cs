@@ -64,30 +64,33 @@ public class createRoom : MonoBehaviour
     public void Create(int roomNbr, int roomSizeX, int roomSizeZ, bool[,] walls, bool[,] enemies, string[,] doors)
     {
         RoomID = roomNbr;
-        Vector3 roomOffset = new Vector3(RoomID * 100,0,RoomID * 100);
-        OuterWalls(roomOffset, roomSizeX, roomSizeZ);
+        Vector3 roomOffset = new Vector3(RoomID * LoadMapStatic.roomOffsetGlobal.x,0,RoomID * LoadMapStatic.roomOffsetGlobal.y);
+        
+        OuterWalls(/*roomOffset,*/ roomSizeX, roomSizeZ);
         for (int i = 0/*-(roomSizeX / 2)*/; i < roomSizeX; i++)
         {
             for (int j = 0/*-(roomSizeZ / 2)*/; j < roomSizeZ; j++)
             {
                 if (enemies[i,j] == true)
                 {
-                    CreateEnemy(i, j, roomOffset, roomSizeX, roomSizeZ);
+                    CreateEnemy(i, j,/* roomOffset,*/ roomSizeX, roomSizeZ);
                 }
                 else if (walls[i,j] == true)
                 {
-                    CreateWall(i, j, roomOffset, roomSizeX, roomSizeZ);
+                    CreateWall(i, j, /*roomOffset,*/ roomSizeX, roomSizeZ);
                 }else if (!doors[i, j].Equals("0"))
                 {
-                    CreateDoor(i, j, roomOffset, roomSizeX, roomSizeZ, doors[i, j]);
-                } else if (RoomID == 0 && Player == null)
+                    CreateDoor(i, j, /*roomOffset,*/ roomSizeX, roomSizeZ, doors[i, j]);
+                } else if (RoomID == 0 && Player == null && LoadMapStatic.player == null)
                 {
                     GameObject go = Instantiate(playerToCreate);
                     go.transform.position = roomOffset + new Vector3((i * offsetX) - (roomSizeX / 2), 1, (j * offsetZ) - (roomSizeZ / 2));
                     Player = go;
+                    LoadMapStatic.player = go;
                 }
             }
         }
+        transform.position = roomOffset;
         created = true;
     }
     /// <summary>
@@ -96,42 +99,42 @@ public class createRoom : MonoBehaviour
     /// <param name="roomOffset"></param>
     /// <param name="roomSizeX"></param>
     /// <param name="roomSizeZ"></param>
-    public void OuterWalls(Vector3 roomOffset, int roomSizeX, int roomSizeZ)
+    public void OuterWalls(/*Vector3 roomOffset,*/ int roomSizeX, int roomSizeZ)
     {
         for (int i = -1; i < roomSizeX + 1; i++)
         {
             for (int j = -1; j < roomSizeZ + 1; j++)
             {
                 if (i == -1)
-                    CreateWall(i, j, roomOffset, roomSizeX, roomSizeZ);
+                    CreateWall(i, j, /*roomOffset,*/ roomSizeX, roomSizeZ);
                 else if (j == -1)
-                    CreateWall(i, j, roomOffset, roomSizeX, roomSizeZ);
+                    CreateWall(i, j,/* roomOffset,*/ roomSizeX, roomSizeZ);
                 if (i == roomSizeX)
-                    CreateWall(i, j, roomOffset, roomSizeX, roomSizeZ);
+                    CreateWall(i, j, /*roomOffset,*/ roomSizeX, roomSizeZ);
                 else if (j == roomSizeZ)
-                    CreateWall(i, j, roomOffset, roomSizeX, roomSizeZ);
+                    CreateWall(i, j, /*roomOffset,*/ roomSizeX, roomSizeZ);
             }
         }
     }
 
-    public void CreateWall(int x, int z, Vector3 roomOffset, int roomSizeX, int roomSizeZ)
+    public void CreateWall(int x, int z/*, Vector3 roomOffset*/, int roomSizeX, int roomSizeZ)
     {
         string holderName = "Generated Walls" + RoomID;
         /// Creates a child for "Room" during runtime, which will hold all the room's walls
         if (!transform.Find(holderName))
         {
             Transform wallHolder = new GameObject(holderName).transform;
-            wallHolder.parent = transform;
+            wallHolder.SetParent(transform);
         }
 
         GameObject go;
-        Vector3 offset = roomOffset + new Vector3((x * offsetX) - (roomSizeX / 2), 1, (z * offsetZ) - (roomSizeZ / 2));
+        Vector3 offset = /*roomOffset + */new Vector3((x * offsetX) - (roomSizeX / 2), 1, (z * offsetZ) - (roomSizeZ / 2));
         go = Instantiate(wallPiece);
         go.transform.position = /*transform.position + */offset;
         //go.transform.SetParent(gameObject.transform);
         go.transform.parent = transform.Find(holderName);
     }
-    public void CreateEnemy(int x, int z, Vector3 roomOffset, int roomSizeX, int roomSizeZ)
+    public void CreateEnemy(int x, int z, /*Vector3 roomOffset,*/ int roomSizeX, int roomSizeZ)
     {
         string holderName = "Generated Enemies" + RoomID;
         /// Creates a child for "Room" during runtime, which will hold all the room's enemies
@@ -142,16 +145,16 @@ public class createRoom : MonoBehaviour
         }
 
         Enemy go;
-        Vector3 offset = roomOffset + new Vector3((x * offsetX) - (roomSizeX / 2), 1, (z * offsetZ) - (roomSizeZ / 2));
+        Vector3 offset =/* roomOffset +*/ new Vector3((x * offsetX) - (roomSizeX / 2), 1, (z * offsetZ) - (roomSizeZ / 2));
         go = Instantiate(enemy) as Enemy;
         go.transform.position = /*transform.position +*/ offset;
         //go.transform.SetParent(gameObject.transform);
         go.transform.parent = transform.Find(holderName);
     }
-    public void CreateDoor(int x, int z, Vector3 roomOffset, int roomSizeX, int roomSizeZ, string doorString)
+    public void CreateDoor(int x, int z, /*Vector3 roomOffset,*/ int roomSizeX, int roomSizeZ, string doorString)
     {
         GameObject go;
-        Vector3 offset = roomOffset + new Vector3((x * offsetX) - (roomSizeX / 2), 1, (z * offsetZ) - (roomSizeZ / 2));
+        Vector3 offset = /*roomOffset + */new Vector3((x * offsetX) - (roomSizeX / 2), 1, (z * offsetZ) - (roomSizeZ / 2));
         go = Instantiate(door);
         go.transform.position = /*transform.position + */offset;
         //go.transform.SetParent(gameObject.transform);

@@ -44,5 +44,7 @@ public class DoorScript : MonoBehaviour
     {
         TargetRoom.SetActive(true);
         caller.GetComponent<Player>().currentRoomID = TargetRoom.GetComponent<createRoom>().RoomID;
+        Vector3 targetPos = new Vector3(TargetRoom.transform.position.x + posOfTarget.x,0, TargetRoom.transform.position.z + posOfTarget.y);
+        caller.transform.position = targetPos;
     }
 }
