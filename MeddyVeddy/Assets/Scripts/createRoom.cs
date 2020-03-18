@@ -14,6 +14,7 @@ public class createRoom : MonoBehaviour
     public int RoomID;
     bool created = false;
     public List<GameObject> doors = new List<GameObject>();
+    public Vector2 roomSize;
     void Start()
     {
         //Test
@@ -65,7 +66,7 @@ public class createRoom : MonoBehaviour
     {
         RoomID = roomNbr;
         Vector3 roomOffset = new Vector3(RoomID * LoadMapStatic.roomOffsetGlobal.x,0,RoomID * LoadMapStatic.roomOffsetGlobal.y);
-        
+        roomSize = new Vector2(roomSizeX, roomSizeZ);
         OuterWalls(/*roomOffset,*/ roomSizeX, roomSizeZ);
         for (int i = 0/*-(roomSizeX / 2)*/; i < roomSizeX; i++)
         {
