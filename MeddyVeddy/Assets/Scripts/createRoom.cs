@@ -52,15 +52,17 @@ public class createRoom : MonoBehaviour
         //-Debug.Log(created);
         if (Player == null && created)
             Player = GameObject.FindGameObjectWithTag("Player");
-        else
-        {
-            //Debug.Log(RoomID + "    " + Player.GetComponent<Player>().currentRoomID);
-            if (Player.GetComponent<Player>().currentRoomID != RoomID)
-            {
-                 //Debug.Log("inactivate");
-                 gameObject.SetActive(false);
-            }
-        } 
+        //else
+        //{
+        //    //Debug.Log(RoomID + "    " + Player.GetComponent<Player>().currentRoomID);
+        //    if (Player.GetComponent<Player>().currentRoomID != RoomID)
+        //    {
+        //        //Debug.Log("inactivate");
+        //        gameObject.SetActive(false); /* Breaks the game as of now */
+        //    }
+        //}
+
+        //Debug.Log("currentRoomID: " + Player.GetComponent<Player>().currentRoomID + ", RoomID: " + RoomID);
     }
 
     public void Create(int roomNbr, int roomSizeX, int roomSizeZ, bool[,] walls, bool[,] enemies, string[,] doors, bool[,] treasure)

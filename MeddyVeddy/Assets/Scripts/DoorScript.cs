@@ -55,7 +55,7 @@ public class DoorScript : MonoBehaviour
         Vector3 targetPos = new Vector3((posOfTarget.x + TargetRoom.transform.position.x) - (int)(TargetRoom.GetComponent<createRoom>().roomSize.x / 2), 1, 
                                         (posOfTarget.y + TargetRoom.transform.position.z) - (int)(TargetRoom.GetComponent<createRoom>().roomSize.y / 2));
         caller.transform.position = targetPos;
-        Debug.Log(posOfTarget + "         " + targetPos);
+        //Debug.Log(posOfTarget + "         " + targetPos);
 
         caller.GetComponent<Player>().disableNextDoor = true;
     }
