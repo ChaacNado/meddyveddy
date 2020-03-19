@@ -160,19 +160,12 @@ public class createRoom : MonoBehaviour
     }
     public void CreateDoor(int x, int z, /*Vector3 roomOffset,*/ int roomSizeX, int roomSizeZ, string doorString)
     {
-        string holderName = "Generated Doors" + RoomID;
-        if (!transform.Find(holderName))
-        {
-            Transform doorHolder = new GameObject(holderName).transform;
-            doorHolder.SetParent(transform);
-        }
-
         GameObject go;
         Vector3 offset = /*roomOffset + */new Vector3((x * offsetX) - (roomSizeX / 2), 1, (z * offsetZ) - (roomSizeZ / 2));
         go = Instantiate(door);
         go.transform.position = /*transform.position + */offset;
         //go.transform.SetParent(gameObject.transform);
-        go.transform.parent = transform.Find(holderName);
+        go.transform.parent = transform;
         string[] splitDoorString = doorString.Split(',');
         go.GetComponent<DoorScript>().targetRoomID = int.Parse(splitDoorString[3]);
         go.GetComponent<DoorScript>().posOfTarget = new Vector2(int.Parse(splitDoorString[1]), int.Parse(splitDoorString[2]));
