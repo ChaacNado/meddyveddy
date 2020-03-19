@@ -81,7 +81,7 @@ public class createRoom : MonoBehaviour
     public void Create(int roomNbr, int roomSizeX, int roomSizeZ, bool[,] walls, bool[,] enemies, string[,] doors, bool[,] treasure)
     {
         RoomID = roomNbr;
-        Vector3 roomOffset = new Vector3(RoomID * LoadMapStatic.roomOffsetGlobal.x, 0, RoomID * LoadMapStatic.roomOffsetGlobal.y);
+        Vector3 roomOffset = new Vector3(RoomID * (roomSizeX * LoadMapStatic.roomOffsetGlobal.x), 0, RoomID * (roomSizeZ * LoadMapStatic.roomOffsetGlobal.y));
         roomSize = new Vector2(roomSizeX, roomSizeZ);
         OuterWalls(/*roomOffset,*/ roomSizeX, roomSizeZ);
         for (int i = 0/*-(roomSizeX / 2)*/; i < roomSizeX; i++)

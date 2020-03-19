@@ -23,8 +23,9 @@ public class CameraScript : MonoBehaviour
         else if (currentRoom != player.GetComponent<Player>().currentRoomID)
         {
             currentRoom = player.GetComponent<Player>().currentRoomID;
-            transform.position = new Vector3(startPos.x + (currentRoom * LoadMapStatic.roomOffsetGlobal.x), startPos.y, startPos.z 
-                + (currentRoom * LoadMapStatic.roomOffsetGlobal.y));
+            GameObject room = LoadMapStatic.rooms[currentRoom];
+            transform.position = new Vector3(startPos.x + (currentRoom * (room.GetComponent<createRoom>().roomSize.x * LoadMapStatic.roomOffsetGlobal.x)), startPos.y, startPos.z 
+                + (currentRoom * (room.GetComponent<createRoom>().roomSize.y * LoadMapStatic.roomOffsetGlobal.y)));
         }
     }
 }

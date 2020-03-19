@@ -7,7 +7,7 @@ using System.Xml.Serialization;
 
 public static class LoadMapStatic
 {
-    public static Vector2 roomOffsetGlobal = new Vector2(100,100);
+    public static Vector2 roomOffsetGlobal = new Vector2(2,2);
     public static GameObject player;
     public static GameObject Dungeon;
     public static List<GameObject> rooms = new List<GameObject>();
