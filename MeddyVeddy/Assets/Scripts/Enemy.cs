@@ -16,7 +16,7 @@ public class Enemy : LivingEntity
 
     Color originalColor;
 
-    float attackDistanceThreshold = 1.5f;
+    float attackDistanceThreshold = 0.5f;
     float timeBetweenAttacks = 1;
     float damage = 1;
 
@@ -45,7 +45,7 @@ public class Enemy : LivingEntity
             targetCollisionRadius = target.GetComponent<CapsuleCollider>().radius;
 
             StartCoroutine(UpdatePath());
-        }       
+        }
     }
 
     void OnTargetDeath()
@@ -87,7 +87,7 @@ public class Enemy : LivingEntity
 
         while (percent <= 1)
         {
-            if(percent >= 0.5f && !hasAppliedDamage)
+            if (percent >= 0.5f && !hasAppliedDamage)
             {
                 hasAppliedDamage = true;
                 targetEntity.TakeDamage(damage);
