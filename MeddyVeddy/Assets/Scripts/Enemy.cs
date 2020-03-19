@@ -7,7 +7,7 @@ using UnityEngine.AI;
 public class Enemy : LivingEntity
 {
     public enum State { Idle, Chasing, Attacking };
-    State currentState;
+    public State currentState;
 
     NavMeshAgent pathFinder;
     Transform target;
@@ -27,7 +27,7 @@ public class Enemy : LivingEntity
     float myCollisionRadius;
     float targetCollisionRadius;
 
-    bool hasTarget;
+    public bool hasTarget = false;
 
     protected override void Start()
     {
@@ -59,7 +59,7 @@ public class Enemy : LivingEntity
         currentState = State.Idle;
     }
 
-    public void UpdateEnemy()
+    void Update()
     {
         if (hasTarget)
         {
@@ -73,6 +73,11 @@ public class Enemy : LivingEntity
                 }
             }
         }
+    }
+
+    public void ChaseTarget()
+    {
+        
     }
 
     IEnumerator Attack()

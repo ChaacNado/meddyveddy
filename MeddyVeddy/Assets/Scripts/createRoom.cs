@@ -64,9 +64,14 @@ public class createRoom : MonoBehaviour
 
         if (Player != null)
         {
+            //Debug.Log(enemy.roomID);
             if (enemy.GetComponent<Enemy>().roomID == Player.GetComponent<Player>().currentRoomID)
             {
-                enemy.GetComponent<Enemy>().UpdateEnemy();
+                //Debug.Log("yes");
+            }
+            else
+            {
+                //Debug.Log("no");
             }
         }
 
@@ -166,6 +171,7 @@ public class createRoom : MonoBehaviour
         Vector3 offset =/* roomOffset +*/ new Vector3((x * offsetX) - (roomSizeX / 2), 1, (z * offsetZ) - (roomSizeZ / 2));
         go = Instantiate(enemy) as Enemy;
         go.roomID = RoomID;
+        Debug.Log(go.roomID);
         go.transform.position = /*transform.position +*/ offset;
         //go.transform.SetParent(gameObject.transform);
         go.transform.parent = transform.Find(holderName);
