@@ -11,6 +11,7 @@ public class Enemy : LivingEntity
 
     NavMeshAgent pathFinder;
     Transform target;
+    GameObject player;
     LivingEntity targetEntity;
     Material skinMaterial;
 
@@ -33,11 +34,13 @@ public class Enemy : LivingEntity
         skinMaterial = GetComponent<Renderer>().material;
         originalColor = skinMaterial.color;
 
-        if (GameObject.FindGameObjectWithTag("Player") != null)
+        player = GameObject.FindGameObjectWithTag("Player");
+
+        if (player != null)
         {
             currentState = State.Chasing;
             hasTarget = true;
-            target = GameObject.FindGameObjectWithTag("Player").transform;
+            target = player.transform;
             targetEntity = target.GetComponent<LivingEntity>();
             targetEntity.OnDeath += OnTargetDeath;
 
