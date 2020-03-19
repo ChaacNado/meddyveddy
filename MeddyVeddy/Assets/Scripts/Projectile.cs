@@ -16,7 +16,7 @@ public class Projectile : MonoBehaviour
         Destroy(gameObject, lifeTime);
 
         Collider[] initialCollisions = Physics.OverlapSphere(transform.position, 0.1f, collisionMask);
-        if(initialCollisions.Length > 0)
+        if (initialCollisions.Length > 0)
         {
             OnHitObject(initialCollisions[0]);
         }
@@ -41,7 +41,7 @@ public class Projectile : MonoBehaviour
 
         /// If the ray is hitting that object...
         if (Physics.Raycast(ray, out hit, moveDistance + rayExtendingLength, collisionMask, QueryTriggerInteraction.Collide))
-            /* QueryTriggerInteraction allows us to set whether or not this will collide with trigger-colliders */
+        /* QueryTriggerInteraction allows us to set whether or not this will collide with trigger-colliders */
         {
             OnHitObject(hit);
         }
