@@ -13,6 +13,7 @@ public class Player : LivingEntity
     RangedWeaponController rwController;
     public int currentRoomID = 0;
     public bool disableNextDoor = false;
+    public int points = 0;
 
     protected override void Start()
     {

@@ -7,6 +7,8 @@ public class createRoom : MonoBehaviour
     public GameObject wallPiece;
     public GameObject door;
     public Enemy enemy;
+    public GameObject Treasure;
+
     public int offsetX = 1, offsetZ = 1;
     List<GameObject> walls = new List<GameObject>();
     GameObject Player;
@@ -59,10 +61,9 @@ public class createRoom : MonoBehaviour
                  gameObject.SetActive(false);
             }
         } 
-        
     }
 
-    public void Create(int roomNbr, int roomSizeX, int roomSizeZ, bool[,] walls, bool[,] enemies, string[,] doors)
+    public void Create(int roomNbr, int roomSizeX, int roomSizeZ, bool[,] walls, bool[,] enemies, string[,] doors, bool[,] treasure)
     {
         RoomID = roomNbr;
         Vector3 roomOffset = new Vector3(RoomID * LoadMapStatic.roomOffsetGlobal.x,0,RoomID * LoadMapStatic.roomOffsetGlobal.y);
@@ -79,7 +80,10 @@ public class createRoom : MonoBehaviour
                 else if (walls[i,j] == true)
                 {
                     CreateWall(i, j, /*roomOffset,*/ roomSizeX, roomSizeZ);
-                }else if (!doors[i, j].Equals("0"))
+                }else if (treasure[i,j])
+                {
+                    CreateTreasure(i, j, roomSizeX, roomSizeZ);
+                } else if (!doors[i, j].Equals("0"))
                 {
                     CreateDoor(i, j, /*roomOffset,*/ roomSizeX, roomSizeZ, doors[i, j]);
                 } else if (RoomID == 0 && Player == null && LoadMapStatic.player == null)
@@ -120,7 +124,7 @@ public class createRoom : MonoBehaviour
 
     public void CreateWall(int x, int z/*, Vector3 roomOffset*/, int roomSizeX, int roomSizeZ)
     {
-        string holderName = "Generated Walls" + RoomID;
+        string holderName = "Generated Walls " + RoomID;
         /// Creates a child for "Room" during runtime, which will hold all the room's walls
         if (!transform.Find(holderName))
         {
@@ -137,7 +141,7 @@ public class createRoom : MonoBehaviour
     }
     public void CreateEnemy(int x, int z, /*Vector3 roomOffset,*/ int roomSizeX, int roomSizeZ)
     {
-        string holderName = "Generated Enemies" + RoomID;
+        string holderName = "Generated Enemies " + RoomID;
         /// Creates a child for "Room" during runtime, which will hold all the room's enemies
         if (!transform.Find(holderName))
         {
@@ -164,5 +168,21 @@ public class createRoom : MonoBehaviour
         go.GetComponent<DoorScript>().targetRoomID = int.Parse(splitDoorString[3]);
         go.GetComponent<DoorScript>().posOfTarget = new Vector2(int.Parse(splitDoorString[1]), int.Parse(splitDoorString[2]));
         doors.Add(go);
+    }
+    public void CreateTreasure(int x, int z, int roomSizeX, int roomSizeZ)
+    {
+        string holderName = "Generated Treasure" + RoomID;
+        if (!transform.Find(holderName))
+        {
+            Transform treasureHolder = new GameObject(holderName).transform;
+            treasureHolder.SetParent(transform);
+        }
+
+        GameObject go;
+        Vector3 offset = new Vector3((x * offsetX) - (roomSizeX / 2), 1, (z * offsetZ) - (roomSizeZ / 2));
+        go = Instantiate(Treasure);
+        go.transform.position = offset;
+        go.transform.parent = transform.Find(holderName);
+
     }
 }

@@ -49,11 +49,14 @@ public static class LoadMapStatic
             }else if (r.Tiles[i].Type == TileType.ENEMY)
             {
                 enemies[(int)r.Tiles[i].Position.x, (int)r.Tiles[i].Position.y] = true;
+            }else if (r.Tiles[i].Type == TileType.TREASURE)
+            {
+                treasure[(int)r.Tiles[i].Position.x, (int)r.Tiles[i].Position.y] = true;
             }
         }
 
         GameObject newRoom = GameObject.Instantiate(room);
-        newRoom.GetComponent<createRoom>().Create(roomID, x, z, walls, enemies, doors);
+        newRoom.GetComponent<createRoom>().Create(roomID, x, z, walls, enemies, doors, treasure);
 
         return newRoom;
     }

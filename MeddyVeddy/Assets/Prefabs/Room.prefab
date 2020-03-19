@@ -47,8 +47,12 @@ MonoBehaviour:
     type: 3}
   door: {fileID: 4683321343059140552, guid: 4aec46195a94a7b47b7aabe129bd0470, type: 3}
   enemy: {fileID: 1858548003856420757, guid: ab007a8106c4e5f4aaaafd6de5e6dd54, type: 3}
+  Treasure: {fileID: 6744397235300374075, guid: 3295c109a848b7e4e9d5be7d1008062b,
+    type: 3}
   offsetX: 1
   offsetZ: 1
   playerToCreate: {fileID: 1532146508573318024, guid: e2f501bda41fc7040a1593a5d2710fe4,
     type: 3}
   RoomID: 0
+  doors: []
+  roomSize: {x: 0, y: 0}
