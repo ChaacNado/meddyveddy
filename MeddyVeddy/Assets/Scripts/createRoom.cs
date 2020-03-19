@@ -64,7 +64,7 @@ public class createRoom : MonoBehaviour
 
         if (Player != null)
         {
-            //Debug.Log(enemy.roomID);
+            //foreach(Enemy enemy in ???)
             if (enemy.GetComponent<Enemy>().roomID == Player.GetComponent<Player>().currentRoomID)
             {
                 //Debug.Log("yes");
