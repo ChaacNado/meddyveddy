@@ -22,12 +22,12 @@ public class createRoom : MonoBehaviour
         //Test
         int roomSizeX = 11, roomSizeZ = 11;
         bool[,] testWalls = new bool[roomSizeX, roomSizeZ], testEnemies = new bool[roomSizeX, roomSizeZ];
-        string [,] testDoors = new string[roomSizeX, roomSizeZ];
+        string[,] testDoors = new string[roomSizeX, roomSizeZ];
         for (int i = 0; i < testWalls.GetLength(0); i++)
         {
             for (int j = 0; j < testWalls.GetLength(1); j++)
             {
-                if (i == 0 || j == 0 ||i == testWalls.GetLength(0) -1|| j == testWalls.GetLength(1)-1)
+                if (i == 0 || j == 0 || i == testWalls.GetLength(0) - 1 || j == testWalls.GetLength(1) - 1)
                 {
                     testWalls[i, j] = true;
                 }
@@ -62,33 +62,44 @@ public class createRoom : MonoBehaviour
         //    }
         //}
 
+        if (Player != null)
+        {
+            if (enemy.GetComponent<Enemy>().roomID == Player.GetComponent<Player>().currentRoomID)
+            {
+                enemy.GetComponent<Enemy>().UpdateEnemy();
+            }
+        }
+
         //Debug.Log("currentRoomID: " + Player.GetComponent<Player>().currentRoomID + ", RoomID: " + RoomID);
     }
 
     public void Create(int roomNbr, int roomSizeX, int roomSizeZ, bool[,] walls, bool[,] enemies, string[,] doors, bool[,] treasure)
     {
         RoomID = roomNbr;
-        Vector3 roomOffset = new Vector3(RoomID * LoadMapStatic.roomOffsetGlobal.x,0,RoomID * LoadMapStatic.roomOffsetGlobal.y);
+        Vector3 roomOffset = new Vector3(RoomID * LoadMapStatic.roomOffsetGlobal.x, 0, RoomID * LoadMapStatic.roomOffsetGlobal.y);
         roomSize = new Vector2(roomSizeX, roomSizeZ);
         OuterWalls(/*roomOffset,*/ roomSizeX, roomSizeZ);
         for (int i = 0/*-(roomSizeX / 2)*/; i < roomSizeX; i++)
         {
             for (int j = 0/*-(roomSizeZ / 2)*/; j < roomSizeZ; j++)
             {
-                if (enemies[i,j] == true)
+                if (enemies[i, j] == true)
                 {
                     CreateEnemy(i, j,/* roomOffset,*/ roomSizeX, roomSizeZ);
                 }
-                else if (walls[i,j] == true)
+                else if (walls[i, j] == true)
                 {
                     CreateWall(i, j, /*roomOffset,*/ roomSizeX, roomSizeZ);
-                }else if (treasure[i,j])
+                }
+                else if (treasure[i, j])
                 {
                     CreateTreasure(i, j, roomSizeX, roomSizeZ);
-                } else if (!doors[i, j].Equals("0"))
+                }
+                else if (!doors[i, j].Equals("0"))
                 {
                     CreateDoor(i, j, /*roomOffset,*/ roomSizeX, roomSizeZ, doors[i, j]);
-                } else if (RoomID == 0 && Player == null && LoadMapStatic.player == null)
+                }
+                else if (RoomID == 0 && Player == null && LoadMapStatic.player == null)
                 {
                     GameObject go = Instantiate(playerToCreate);
                     go.transform.position = roomOffset + new Vector3((i * offsetX) - (roomSizeX / 2), 1, (j * offsetZ) - (roomSizeZ / 2));
@@ -154,6 +165,7 @@ public class createRoom : MonoBehaviour
         Enemy go;
         Vector3 offset =/* roomOffset +*/ new Vector3((x * offsetX) - (roomSizeX / 2), 1, (z * offsetZ) - (roomSizeZ / 2));
         go = Instantiate(enemy) as Enemy;
+        go.roomID = RoomID;
         go.transform.position = /*transform.position +*/ offset;
         //go.transform.SetParent(gameObject.transform);
         go.transform.parent = transform.Find(holderName);

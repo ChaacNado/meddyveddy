@@ -17,6 +17,8 @@ public class Enemy : LivingEntity
 
     Color originalColor;
 
+    public int roomID;
+
     float attackDistanceThreshold = 0.5f;
     float timeBetweenAttacks = 1;
     float damage = 1;
@@ -57,7 +59,7 @@ public class Enemy : LivingEntity
         currentState = State.Idle;
     }
 
-    void Update()
+    public void UpdateEnemy()
     {
         if (hasTarget)
         {
