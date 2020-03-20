@@ -27,7 +27,7 @@ public class Enemy : LivingEntity
     float myCollisionRadius;
     float targetCollisionRadius;
 
-    public bool hasTarget = false;
+    bool hasTarget;
 
     protected override void Start()
     {
@@ -75,11 +75,6 @@ public class Enemy : LivingEntity
         }
     }
 
-    public void ChaseTarget()
-    {
-        
-    }
-
     IEnumerator Attack()
     {
         currentState = State.Attacking;
@@ -118,7 +113,7 @@ public class Enemy : LivingEntity
 
     /// Once called, the loop will go through every refreshRate
     /// To avoid recalculating the path every frame, which can be quite expensive
-    IEnumerator UpdatePath()
+    public IEnumerator UpdatePath()
     {
         float refreshRate = 0.25f; /* How often in seconds the agent will update its path */
 

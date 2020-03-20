@@ -63,7 +63,8 @@ public class Projectile : MonoBehaviour
         if (damageableObject != null)
         {
             damageableObject.TakeDamage(damage);
-        } else
+        }
+        else
         {
             Destroy(gameObject);
             return;

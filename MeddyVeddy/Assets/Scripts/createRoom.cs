@@ -11,12 +11,14 @@ public class createRoom : MonoBehaviour
 
     public int offsetX = 1, offsetZ = 1;
     List<GameObject> walls = new List<GameObject>();
+    List<Enemy> enemies = new List<Enemy>();
     GameObject Player;
     public GameObject playerToCreate;
     public int RoomID;
     bool created = false;
     public List<GameObject> doors = new List<GameObject>();
     public Vector2 roomSize;
+
     void Start()
     {
         //Test
@@ -64,15 +66,20 @@ public class createRoom : MonoBehaviour
 
         if (Player != null)
         {
-            //foreach(Enemy enemy in ???)
-            if (enemy.GetComponent<Enemy>().roomID == Player.GetComponent<Player>().currentRoomID)
+            foreach(Enemy e in enemies)
             {
-                //Debug.Log("yes");
-            }
-            else
-            {
-                //Debug.Log("no");
-            }
+                if (e != null)
+                {
+                    if (e.roomID == Player.GetComponent<Player>().currentRoomID)
+                    {
+                        Debug.Log("in the same room");
+                    }
+                    else
+                    {
+                        Debug.Log("not in the same room");
+                    }
+                }
+            }          
         }
 
         //Debug.Log("currentRoomID: " + Player.GetComponent<Player>().currentRoomID + ", RoomID: " + RoomID);
@@ -171,7 +178,7 @@ public class createRoom : MonoBehaviour
         Vector3 offset =/* roomOffset +*/ new Vector3((x * offsetX) - (roomSizeX / 2), 1, (z * offsetZ) - (roomSizeZ / 2));
         go = Instantiate(enemy) as Enemy;
         go.roomID = RoomID;
-        Debug.Log(go.roomID);
+        enemies.Add(go);
         go.transform.position = /*transform.position +*/ offset;
         //go.transform.SetParent(gameObject.transform);
         go.transform.parent = transform.Find(holderName);
