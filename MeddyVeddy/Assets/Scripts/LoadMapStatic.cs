@@ -11,57 +11,77 @@ public static class LoadMapStatic
     public static GameObject player;
     public static GameObject Dungeon;
     public static List<GameObject> rooms = new List<GameObject>();
+    static int roomNumber = 0;
     public static void LoadMap(string filePath, GameObject dungeon, GameObject room)
     {
-        DungeonModel dungeonModel = DeSerializer.DeserializeXMLFileToObject<DungeonModel>(filePath);
+        NewDungeonModel dungeonModel = DeSerializer.DeserializeXMLFileToObject<NewDungeonModel>(filePath, "Dungeon");
         Dungeon = GameObject.Instantiate(dungeon);
-        foreach(RoomModel r in dungeonModel.Rooms)
+        //if (dungeonModel == null)
+        //    Debug.Log("ewgbaefdr");
+        foreach (RoomID r in dungeonModel.Rooms.rooms)
         {
-            rooms.Add(CallCreateRoom(r, room));
+            //Debug.Log("funkar: " + r.ID);
+            string path = Path.Combine(Application.dataPath, "Maps/" + "0321f461-81c0-43b3-a72a-2921f20863dd" + "/dungeon/" + "room-" + r.ID + ".xml");
+            FileInfo fileInfo = new FileInfo(path);
+            //r.ID = "" + roomNumber;
+            if (fileInfo.Exists)
+            {
+                //Debug.Log("finns: " + r.ID);
+                newRoomModel roomObject = DeSerializer.DeserializeXMLFileToObject<newRoomModel>(path, "Room");
+                rooms.Add(CallCreateRoom(dungeonModel, roomObject, room));
+                roomNumber++;
+            }
         }
-        foreach(GameObject r in rooms)
+        
+        foreach (GameObject r in rooms)
         {
-            foreach(GameObject d in r.GetComponent<createRoom>().doors)
+            foreach (GameObject d in r.GetComponent<createRoom>().doors)
             {
                 foreach (GameObject target in rooms)
                 {
-                    if (target.GetComponent<createRoom>().RoomID == d.GetComponent<DoorScript>().targetRoomID)
+                    Debug.Log(target.GetComponent<createRoom>().XmlID + "   :   " + d.GetComponent<DoorScript>().XmlTargetId);
+                    if (target.GetComponent<createRoom>().XmlID.Equals(d.GetComponent<DoorScript>().XmlTargetId))
                     {
                         d.GetComponent<DoorScript>().TargetRoom = target;
+                        d.GetComponent<DoorScript>().targetRoomID = target.GetComponent<createRoom>().RoomID;
                     }
                 }
             }
         }
     }
-    public static GameObject CallCreateRoom(RoomModel r, GameObject room)
+    public static GameObject CallCreateRoom(NewDungeonModel d, newRoomModel r, GameObject room)
     {
-        int x = r.Width, z = r.Height, roomID = r.RoomID;
+        int x = r.width, z = r.height, roomID = roomNumber;
+        string XmlID = r.ID;
         bool[,] walls = new bool[x, z];
         bool[,] enemies = new bool[x, z];
         bool[,] treasure = new bool[x, z];
-        string[,] doors = doorsToString(x, z, r);
+        string[,] doors = doorsToString(x, z, r, d);
 
-        for (int i = 0; i < r.Tiles.Length; i++)
+        if (r.Tiles.tiles == null)
+            Debug.Log("r.Tiles.tiles");
+
+        for (int i = 0; i < r.Tiles.tiles.Count; i++)
         {
-            if (r.Tiles[i].Type == TileType.WALL)
+            if (r.Tiles.tiles[i].Type == TileType.WALL)
             {
-                walls[(int)r.Tiles[i].Position.x, (int)r.Tiles[i].Position.y] = true;
-            }else if (r.Tiles[i].Type == TileType.ENEMY)
+                walls[(int)r.Tiles.tiles[i].X, (int)r.Tiles.tiles[i].Y] = true;
+            } else if (r.Tiles.tiles[i].Type == TileType.ENEMY)
             {
-                enemies[(int)r.Tiles[i].Position.x, (int)r.Tiles[i].Position.y] = true;
-            }else if (r.Tiles[i].Type == TileType.TREASURE)
+                enemies[(int)r.Tiles.tiles[i].X, (int)r.Tiles.tiles[i].Y] = true;
+            } else if (r.Tiles.tiles[i].Type == TileType.TREASURE)
             {
-                treasure[(int)r.Tiles[i].Position.x, (int)r.Tiles[i].Position.y] = true;
+                treasure[(int)r.Tiles.tiles[i].X, (int)r.Tiles.tiles[i].Y] = true;
             }
         }
 
         GameObject newRoom = GameObject.Instantiate(room);
         newRoom.GetComponent<createRoom>().Create(roomID, x, z, walls, enemies, doors, treasure);
-
+        newRoom.GetComponent<createRoom>().XmlID = XmlID;
         return newRoom;
     }
 
-    public static string[,] doorsToString(int x, int y, RoomModel r)
+    public static string[,] doorsToString(int x, int y, newRoomModel r, NewDungeonModel d)
     {
         string[,] doors = new string[x, y];
         for(int i = 0; i < x; i++)
@@ -71,11 +91,19 @@ public static class LoadMapStatic
                 doors[i, j] = "0";
             }
         }
-        foreach(RoomEdgeModel rem in r.ConnectingRoomIDs)
+        foreach (Connection rem in d.Connections.Connections)
         {
-            int posX = (int)rem.StartDoorPosition.x;
-            int posY = (int)rem.StartDoorPosition.y;
-            doors[posX, posY] = "1," + rem.TargetDoorPosition.x + "," + rem.TargetDoorPosition.y + "," + rem.ToRoomID;
+            if (r.ID.Equals(rem.From))
+            {
+                int posX = (int)rem.FromPosX;
+                int posY = (int)rem.FromPosY;
+                doors[posX, posY] = "1," + rem.toPosX + "," + rem.toPosY + "," + rem.To;
+            }else if (r.ID.Equals(rem.To))
+            {
+                int posX = (int)rem.toPosX;
+                int posY = (int)rem.toPosY;
+                doors[posX, posY] = "1," + rem.FromPosX + "," + rem.FromPosY + "," + rem.From;
+            }
         }
 
         return doors;

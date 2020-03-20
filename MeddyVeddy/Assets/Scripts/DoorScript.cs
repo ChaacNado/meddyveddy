@@ -10,6 +10,7 @@ public class DoorScript : MonoBehaviour
     public Vector2 posOfTarget;
     public bool enabled = true;
     double timeLeft = 2;
+    public string XmlTargetId;
     // Start is called before the first frame update
     void Start()
     {

@@ -19,6 +19,7 @@ public class createRoom : MonoBehaviour
     public List<GameObject> doors = new List<GameObject>();
     public Vector2 roomSize;
 
+    public string XmlID;
     void Start()
     {
         //Test
@@ -199,7 +200,13 @@ public class createRoom : MonoBehaviour
         //go.transform.SetParent(gameObject.transform);
         go.transform.parent = transform.Find(holderName);
         string[] splitDoorString = doorString.Split(',');
-        go.GetComponent<DoorScript>().targetRoomID = int.Parse(splitDoorString[3]);
+
+        //foreach(GameObject r in LoadMapStatic.rooms)
+        //{
+        //    if (r.GetComponent<createRoom>().XmlID.Equals(splitDoorString[3]))
+        //        go.GetComponent<DoorScript>().targetRoomID = r.GetComponent<createRoom>().RoomID;
+        //}
+        go.GetComponent<DoorScript>().XmlTargetId = splitDoorString[3];
         go.GetComponent<DoorScript>().posOfTarget = new Vector2(int.Parse(splitDoorString[1]), int.Parse(splitDoorString[2]));
         doors.Add(go);
     }
