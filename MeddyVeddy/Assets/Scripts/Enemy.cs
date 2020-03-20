@@ -19,6 +19,7 @@ public class Enemy : LivingEntity
 
     public int roomID;
 
+    //float detectionDistanceThreshold = 5f;
     float attackDistanceThreshold = 0.5f;
     float timeBetweenAttacks = 1;
     float damage = 1;
@@ -28,6 +29,7 @@ public class Enemy : LivingEntity
     float targetCollisionRadius;
 
     bool hasTarget;
+    public bool inSameRoom;
 
     protected override void Start()
     {
@@ -61,6 +63,17 @@ public class Enemy : LivingEntity
 
     void Update()
     {
+        /// Updates the pathfinder only when the player is in the same room
+        if (inSameRoom)
+        {
+            CheckRange();
+        }
+        else
+        {
+            currentState = State.Idle;
+            pathFinder.enabled = false;
+        }
+
         if (hasTarget)
         {
             if (Time.time > nextAttackTime)
@@ -73,6 +86,14 @@ public class Enemy : LivingEntity
                 }
             }
         }
+    }
+
+    void CheckRange()
+    {
+        // Possibly add code to check distance to target, and only detect player if close enough
+
+        currentState = State.Chasing;
+        pathFinder.enabled = true;
     }
 
     IEnumerator Attack()
@@ -113,7 +134,7 @@ public class Enemy : LivingEntity
 
     /// Once called, the loop will go through every refreshRate
     /// To avoid recalculating the path every frame, which can be quite expensive
-    public IEnumerator UpdatePath()
+    IEnumerator UpdatePath()
     {
         float refreshRate = 0.25f; /* How often in seconds the agent will update its path */
 
@@ -127,7 +148,10 @@ public class Enemy : LivingEntity
                 {
                     pathFinder.SetDestination(targetPosition);
                 }
-
+                //else
+                //{
+                //    pathFinder.ResetPath();
+                //}
             }
             yield return new WaitForSeconds(refreshRate);
         }

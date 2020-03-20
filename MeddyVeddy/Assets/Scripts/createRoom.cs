@@ -72,11 +72,11 @@ public class createRoom : MonoBehaviour
                 {
                     if (e.roomID == Player.GetComponent<Player>().currentRoomID)
                     {
-                        Debug.Log("in the same room");
+                        e.inSameRoom = true;
                     }
                     else
                     {
-                        Debug.Log("not in the same room");
+                        e.inSameRoom = false;
                     }
                 }
             }          
