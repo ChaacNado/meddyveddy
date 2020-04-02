@@ -8,7 +8,7 @@ public class DoorScript : MonoBehaviour
     public GameObject TargetRoom = null;
     public int targetRoomID;
     public Vector2 posOfTarget;
-    public bool enabled = true;
+    public bool doorEnabled = true;
     double timeLeft = 2;
     public string XmlTargetId;
     // Start is called before the first frame update
@@ -33,15 +33,15 @@ public class DoorScript : MonoBehaviour
         if (caller.GetComponent<Player>().disableNextDoor)
         {
             caller.GetComponent<Player>().disableNextDoor = false;
-            enabled = false;
+            doorEnabled = false;
         }
         if (TargetRoom == null)
             return;
-        if (KeyID.Equals("unlocked") && enabled)
+        if (KeyID.Equals("unlocked") && doorEnabled)
             Enter(caller);
         else
         {
-            if (caller.GetComponent<Player>().Keys.Contains(KeyID) && enabled)
+            if (caller.GetComponent<Player>().Keys.Contains(KeyID) && doorEnabled)
             {
                 Enter(caller);
             }
@@ -65,6 +65,6 @@ public class DoorScript : MonoBehaviour
     {
         timeLeft -= Time.deltaTime;
         if (timeLeft < 0)
-            enabled = true;
+            doorEnabled = true;
     }
 }
