@@ -159,9 +159,9 @@ public class createRoom : MonoBehaviour
         }
 
         GameObject go;
-        Vector3 offset = /*roomOffset + */new Vector3((x * offsetX) - (roomSizeX / 2), 1, (z * offsetZ) - (roomSizeZ / 2));
-        go = Instantiate(wallPiece);
-        go.transform.position = /*transform.position + */offset;
+        //Vector3 offset = /*roomOffset + */new Vector3((x * offsetX) - (roomSizeX / 2), 1, (z * offsetZ) - (roomSizeZ / 2));
+        go = Init(x,z,roomSizeX,roomSizeZ,wallPiece);
+        //go.transform.position = /*transform.position + */offset;
         //go.transform.SetParent(gameObject.transform);
         go.transform.parent = transform.Find(holderName);
     }
@@ -180,7 +180,7 @@ public class createRoom : MonoBehaviour
         go = Instantiate(enemy) as Enemy;
         go.roomID = RoomID;
         enemies.Add(go);
-        go.transform.position = /*transform.position +*/ offset;
+        //go.transform.position = /*transform.position +*/ offset;
         //go.transform.SetParent(gameObject.transform);
         go.transform.parent = transform.Find(holderName);
     }
@@ -194,9 +194,9 @@ public class createRoom : MonoBehaviour
         }
 
         GameObject go;
-        Vector3 offset = /*roomOffset + */new Vector3((x * offsetX) - (roomSizeX / 2), 1, (z * offsetZ) - (roomSizeZ / 2));
-        go = Instantiate(door);
-        go.transform.position = /*transform.position + */offset;
+        //Vector3 offset = /*roomOffset + */new Vector3((x * offsetX) - (roomSizeX / 2), 1, (z * offsetZ) - (roomSizeZ / 2));
+        go = Init(x,z,roomSizeX,roomSizeZ,door);
+        //go.transform.position = /*transform.position + */offset;
         //go.transform.SetParent(gameObject.transform);
         go.transform.parent = transform.Find(holderName);
         string[] splitDoorString = doorString.Split(',');
@@ -220,10 +220,21 @@ public class createRoom : MonoBehaviour
         }
 
         GameObject go;
-        Vector3 offset = new Vector3((x * offsetX) - (roomSizeX / 2), 1, (z * offsetZ) - (roomSizeZ / 2));
-        go = Instantiate(Treasure);
-        go.transform.position = offset;
+        //Vector3 offset = new Vector3((x * offsetX) - (roomSizeX / 2), 1, (z * offsetZ) - (roomSizeZ / 2));
+        go = Init(x, z, roomSizeX, roomSizeZ, Treasure);
+        //go.transform.position = offset;
         go.transform.parent = transform.Find(holderName);
 
+    }
+
+    public GameObject Init(int x, int z, int roomSizeX, int roomSizeZ, GameObject toInit)
+    {
+        GameObject toReturn;
+
+        Vector3 offset = /*roomOffset + */new Vector3((x * offsetX) - (roomSizeX / 2), 1, (z * offsetZ) - (roomSizeZ / 2));
+        toReturn = Instantiate(toInit);
+        toReturn.transform.position = offset;
+
+        return toReturn;
     }
 }
