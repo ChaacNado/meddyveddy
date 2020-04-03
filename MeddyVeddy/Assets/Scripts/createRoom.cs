@@ -231,7 +231,8 @@ public class createRoom : MonoBehaviour
     {
         GameObject toReturn;
 
-        Vector3 offset = /*roomOffset + */new Vector3((x * offsetX) - (roomSizeX / 2), 1, (z * offsetZ) - (roomSizeZ / 2));
+        float toAdd = 1.5f;
+        Vector3 offset = /*roomOffset + */new Vector3(((x * toAdd) * offsetX) - (roomSizeX / 2), 1, ((z * toAdd) * offsetZ) - (roomSizeZ / 2));
         toReturn = Instantiate(toInit);
         toReturn.transform.position = offset;
 
