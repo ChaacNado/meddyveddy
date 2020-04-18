@@ -18,6 +18,7 @@ public class createRoom : MonoBehaviour
     bool created = false;
     public List<GameObject> doors = new List<GameObject>();
     public Vector2 roomSize;
+    float toAdd = 1.5f;
 
     public string XmlID;
     void Start()
@@ -207,7 +208,7 @@ public class createRoom : MonoBehaviour
         //        go.GetComponent<DoorScript>().targetRoomID = r.GetComponent<createRoom>().RoomID;
         //}
         go.GetComponent<DoorScript>().XmlTargetId = splitDoorString[3];
-        go.GetComponent<DoorScript>().posOfTarget = new Vector2(int.Parse(splitDoorString[1]), int.Parse(splitDoorString[2]));
+        go.GetComponent<DoorScript>().posOfTarget = new Vector2(int.Parse(splitDoorString[1]) * toAdd, int.Parse(splitDoorString[2]) * toAdd);
         doors.Add(go);
     }
     public void CreateTreasure(int x, int z, int roomSizeX, int roomSizeZ)
@@ -231,8 +232,8 @@ public class createRoom : MonoBehaviour
     {
         GameObject toReturn;
 
-        float toAdd = 1.5f;
-        Vector3 offset = /*roomOffset + */new Vector3(((x * toAdd) * offsetX) - (roomSizeX / 2), 1, ((z * toAdd) * offsetZ) - (roomSizeZ / 2));
+       
+        Vector3 offset = new Vector3(((x * toAdd) * offsetX) - (roomSizeX / 2), 1, ((z * toAdd) * offsetZ) - (roomSizeZ / 2));
         toReturn = Instantiate(toInit);
         toReturn.transform.position = offset;
 

@@ -23,6 +23,7 @@ public class Player : LivingEntity
         viewCamera = Camera.main;
     }
 
+    
     void Update()
     {
         /// Movement input
@@ -50,4 +51,10 @@ public class Player : LivingEntity
             rwController.Shoot();
         }
     }
+
+    public float GetHP()
+    {
+        return health;
+    }
+
 }
