@@ -7,12 +7,12 @@ using System.Xml.Serialization;
 
 public static class LoadMapStatic
 {
-    public static Vector2 roomOffsetGlobal = new Vector2(2,2);
+    public static Vector2 roomOffsetGlobal = new Vector2(3,3);
     public static GameObject player = null;
     public static GameObject Dungeon;
     public static List<GameObject> rooms = new List<GameObject>();
     static int roomNumber = 0;
-    public static void LoadMap(string filePath, GameObject dungeon, GameObject room)
+    public static void LoadMap(string filePath, GameObject dungeon, GameObject room, string pathOfFolder)
     {
         NewDungeonModel dungeonModel = DeSerializer.DeserializeXMLFileToObject<NewDungeonModel>(filePath, "Dungeon");
         Dungeon = GameObject.Instantiate(dungeon);
@@ -21,7 +21,7 @@ public static class LoadMapStatic
         foreach (RoomID r in dungeonModel.Rooms.rooms)
         {
             //Debug.Log("funkar: " + r.ID);
-            string path = Path.Combine(Application.dataPath, "Maps/" + "0321f461-81c0-43b3-a72a-2921f20863dd" + "/dungeon/" + "room-" + r.ID + ".xml");
+            string path = Path.Combine(pathOfFolder, "room-" + r.ID + ".xml");
             FileInfo fileInfo = new FileInfo(path);
             //r.ID = "" + roomNumber;
             if (fileInfo.Exists)
@@ -30,6 +30,9 @@ public static class LoadMapStatic
                 newRoomModel roomObject = DeSerializer.DeserializeXMLFileToObject<newRoomModel>(path, "Room");
                 rooms.Add(CallCreateRoom(dungeonModel, roomObject, room));
                 roomNumber++;
+            }else
+            {
+                Debug.Log(path + "                          ERROR PATH");
             }
         }
         

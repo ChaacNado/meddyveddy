@@ -90,34 +90,33 @@ public class createRoom : MonoBehaviour
     public void Create(int roomNbr, int roomSizeX, int roomSizeZ, bool[,] walls, bool[,] enemies, string[,] doors, bool[,] treasure)
     {
         RoomID = roomNbr;
-        Vector3 roomOffset = new Vector3(RoomID * (roomSizeX * LoadMapStatic.roomOffsetGlobal.x), 0, RoomID * (roomSizeZ * LoadMapStatic.roomOffsetGlobal.y));
+        Vector3 roomOffset = new Vector3(RoomID * (roomSizeX * LoadMapStatic.roomOffsetGlobal.x), 0, RoomID * (roomSizeZ * LoadMapStatic.roomOffsetGlobal.y) * (RoomID%2)*-1);
         roomSize = new Vector2(roomSizeX, roomSizeZ);
         OuterWalls(/*roomOffset,*/ roomSizeX, roomSizeZ);
         for (int i = 0/*-(roomSizeX / 2)*/; i < roomSizeX; i++)
         {
             for (int j = 0/*-(roomSizeZ / 2)*/; j < roomSizeZ; j++)
             {
+                int x = i, y = roomSizeZ - j;
                 if (enemies[i, j] == true)
                 {
-                    CreateEnemy(i, j,/* roomOffset,*/ roomSizeX, roomSizeZ);
+                    CreateEnemy(x, y,/* roomOffset,*/ roomSizeX, roomSizeZ);
                 }
                 else if (walls[i, j] == true)
                 {
-                    CreateWall(i, j, /*roomOffset,*/ roomSizeX, roomSizeZ);
+                    CreateWall(x, y, /*roomOffset,*/ roomSizeX, roomSizeZ);
                 }
                 else if (treasure[i, j])
                 {
-                    CreateTreasure(i, j, roomSizeX, roomSizeZ);
+                    CreateTreasure(x, y, roomSizeX, roomSizeZ);
                 }
                 else if (!doors[i, j].Equals("0"))
                 {
-                    CreateDoor(i, j, /*roomOffset,*/ roomSizeX, roomSizeZ, doors[i, j]);
-                }
-                else if (RoomID == 0 && Player == null && LoadMapStatic.player == null)
+                    CreateDoor(x, y, /*roomOffset,*/ roomSizeX, roomSizeZ, doors[i, j]);
+                } else if (RoomID == 0 && Player == null && LoadMapStatic.player == null)
                 {
                     GameObject go = Instantiate(playerToCreate);
-                    go.transform.position = roomOffset + new Vector3((i * offsetX) - (roomSizeX / 2), 1, (j * offsetZ) - (roomSizeZ / 2));
-                    Player = go;
+                    go.transform.position = new Vector3(((x * toAdd) * offsetX) - (roomSizeX / 2), 1, (((y * toAdd) * offsetZ) - (roomSizeZ / 2)));/*roomOffset + new Vector3((x * offsetX) - (roomSizeX / 2), 1, ((y * offsetZ) - (roomSizeZ / 2)) * -1); */                    Player = go;
                     LoadMapStatic.player = go;
                 }
             }
@@ -138,17 +137,16 @@ public class createRoom : MonoBehaviour
             for (int j = -1; j < roomSizeZ + 1; j++)
             {
                 if (i == -1)
-                    CreateWall(i, j, /*roomOffset,*/ roomSizeX, roomSizeZ);
+                    CreateWall(i, j + 1, /*roomOffset,*/ roomSizeX, roomSizeZ);
                 else if (j == -1)
-                    CreateWall(i, j,/* roomOffset,*/ roomSizeX, roomSizeZ);
+                    CreateWall(i, j + 1,/* roomOffset,*/ roomSizeX, roomSizeZ);
                 if (i == roomSizeX)
-                    CreateWall(i, j, /*roomOffset,*/ roomSizeX, roomSizeZ);
+                    CreateWall(i, j + 1, /*roomOffset,*/ roomSizeX, roomSizeZ);
                 else if (j == roomSizeZ)
-                    CreateWall(i, j, /*roomOffset,*/ roomSizeX, roomSizeZ);
+                    CreateWall(i, j + 1, /*roomOffset,*/ roomSizeX, roomSizeZ);
             }
         }
     }
-
     public void CreateWall(int x, int z/*, Vector3 roomOffset*/, int roomSizeX, int roomSizeZ)
     {
         string holderName = "Generated Walls " + RoomID;
@@ -177,8 +175,9 @@ public class createRoom : MonoBehaviour
         }
 
         Enemy go;
-        Vector3 offset =/* roomOffset +*/ new Vector3((x * offsetX) - (roomSizeX / 2), 1, (z * offsetZ) - (roomSizeZ / 2));
+        Vector3 offset =/* roomOffset +*/ new Vector3(((x * toAdd) * offsetX) - (roomSizeX / 2), 1, (((z * toAdd) * offsetZ) - (roomSizeZ / 2)));
         go = Instantiate(enemy) as Enemy;
+        go.transform.position = offset;
         go.roomID = RoomID;
         enemies.Add(go);
         //go.transform.position = /*transform.position +*/ offset;
@@ -233,7 +232,7 @@ public class createRoom : MonoBehaviour
         GameObject toReturn;
 
        
-        Vector3 offset = new Vector3(((x * toAdd) * offsetX) - (roomSizeX / 2), 1, ((z * toAdd) * offsetZ) - (roomSizeZ / 2));
+        Vector3 offset = new Vector3(((x * toAdd) * offsetX) - (roomSizeX / 2), 1, (((z * toAdd) * offsetZ) - (roomSizeZ / 2)));
         toReturn = Instantiate(toInit);
         toReturn.transform.position = offset;
 

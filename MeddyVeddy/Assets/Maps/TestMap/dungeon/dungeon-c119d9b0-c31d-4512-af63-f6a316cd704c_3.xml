@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE Dungeon SYSTEM "room.dtd">
+<Dungeon ID="c119d9b0-c31d-4512-af63-f6a316cd704c">
+    <Rooms>
+        <Room ID="3932fb8d-b748-4a60-aaeb-4c3e9d0a6a62"/>
+        <Room ID="3384baff-aada-4f64-a648-5f39fed8a307"/>
+    </Rooms>
+    <Connections/>
+    <Init PosX="0" PosY="0" ROOM_ID="3932fb8d-b748-4a60-aaeb-4c3e9d0a6a62"/>
+</Dungeon>

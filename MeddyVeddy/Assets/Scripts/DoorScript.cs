@@ -54,7 +54,7 @@ public class DoorScript : MonoBehaviour
         caller.GetComponent<Player>().currentRoomID = TargetRoom.GetComponent<createRoom>().RoomID;
         //Vector3 targetPos = new Vector3(TargetRoom.transform.position.x + posOfTarget.x/2,0, TargetRoom.transform.position.z + posOfTarget.y/2);
         Vector3 targetPos = new Vector3((posOfTarget.x + TargetRoom.transform.position.x) - (int)(TargetRoom.GetComponent<createRoom>().roomSize.x / 2), 1, 
-                                        (posOfTarget.y + TargetRoom.transform.position.z) - (int)(TargetRoom.GetComponent<createRoom>().roomSize.y / 2));
+                                        (posOfTarget.y + TargetRoom.transform.position.z)  - ((int)(TargetRoom.GetComponent<createRoom>().roomSize.y / 2)));
         caller.transform.position = targetPos;
         //Debug.Log(posOfTarget + "         " + targetPos);
 
