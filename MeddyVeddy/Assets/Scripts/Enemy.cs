@@ -11,6 +11,8 @@ public class Enemy : LivingEntity
 
     public bool isBoss;
 
+    RangedWeaponController rwController;
+
     NavMeshAgent pathFinder;
     Transform target;
     GameObject player;
@@ -44,6 +46,7 @@ public class Enemy : LivingEntity
     protected override void Start()
     {
         base.Start();
+        rwController = GetComponent<RangedWeaponController>();
 
         pathFinder = GetComponent<NavMeshAgent>();
         skinMaterial = GetComponent<Renderer>().material;
@@ -96,6 +99,7 @@ public class Enemy : LivingEntity
         {
             if (Time.time > nextAttackTime)
             {
+                rwController.Shoot();
                 float sqrDstToTarget = (target.position - transform.position).sqrMagnitude; /* Distance in squared form */
                 if (sqrDstToTarget < Mathf.Pow(attackDistanceThreshold + myCollisionRadius + targetCollisionRadius, 2))
                 {
