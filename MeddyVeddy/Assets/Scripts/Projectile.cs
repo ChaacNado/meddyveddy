@@ -5,7 +5,7 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     public LayerMask collisionMask;
-    float speed = 10;
+    float speed;
     float damage = 1;
 
     float lifeTime = 3;

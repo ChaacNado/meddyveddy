@@ -9,7 +9,7 @@ public class Enemy : LivingEntity
     public enum State { Idle, Chasing, Attacking };
     public State currentState;
 
-    public bool isBoss;
+    public bool isBoss = false;
 
     RangedWeaponController rwController;
 
@@ -35,18 +35,15 @@ public class Enemy : LivingEntity
     bool hasTarget;
     public bool inSameRoom;
 
-    void Awake()
-    {
-        if (isBoss)
-        {
-            UpgradeToBoss();
-        }
-    }
-
     protected override void Start()
     {
         base.Start();
         rwController = GetComponent<RangedWeaponController>();
+
+        if (isBoss)
+        {
+            UpgradeToBoss();
+        }
 
         pathFinder = GetComponent<NavMeshAgent>();
         skinMaterial = GetComponent<Renderer>().material;
@@ -73,6 +70,8 @@ public class Enemy : LivingEntity
     {
         transform.localScale = transform.localScale * 3;
         startingHealth = 10;
+        health = startingHealth;
+        attackDistanceThreshold = 1.5f;
         GetComponent<NavMeshAgent>().speed = GetComponent<NavMeshAgent>().speed / 3;
     }
 
@@ -99,10 +98,6 @@ public class Enemy : LivingEntity
         {
             if (Time.time > nextAttackTime)
             {
-                if (isBoss)
-                {
-                    rwController.Shoot();
-                }
                 float sqrDstToTarget = (target.position - transform.position).sqrMagnitude; /* Distance in squared form */
                 if (sqrDstToTarget < Mathf.Pow(attackDistanceThreshold + myCollisionRadius + targetCollisionRadius, 2))
                 {

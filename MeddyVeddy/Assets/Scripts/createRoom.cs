@@ -177,6 +177,7 @@ public class createRoom : MonoBehaviour
         Enemy go;
         Vector3 offset =/* roomOffset +*/ new Vector3(((x * toAdd) * offsetX) - (roomSizeX / 2), 1, (((z * toAdd) * offsetZ) - (roomSizeZ / 2)));
         go = Instantiate(enemy) as Enemy;
+        //go.isBoss = true;
         go.transform.position = offset;
         go.roomID = RoomID;
         enemies.Add(go);
