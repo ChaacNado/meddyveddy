@@ -113,6 +113,9 @@ public class newRoomModel
     //public List<Tile> Tiles { get; set; }
     [XmlElement(ElementName = "Tiles")]
     public TileHolder Tiles { get; set; }
+
+    [XmlElement(ElementName = "Customs")]
+    public CustomHolder Customs { get; set; }
 }
 
 
@@ -132,6 +135,27 @@ public class Tile
     [XmlAttribute("PosX")]
     public int X { get; set; }
     [XmlAttribute("PosY")]
+    public int Y { get; set; }
+    [XmlAttribute("value")]
+    public TileType Type { get; set; }
+}
+
+[Serializable]
+[XmlRoot(ElementName = "Room")]
+public class CustomHolder
+{
+    public CustomHolder() { }
+    [XmlElement(ElementName = "Custom")]
+    public List<Custom> customs { get; set; }
+}
+
+[Serializable]
+[XmlRoot(ElementName = "Custom")]
+public class Custom
+{
+    [XmlAttribute("centerX")]
+    public int X { get; set; }
+    [XmlAttribute("centerY")]
     public int Y { get; set; }
     [XmlAttribute("value")]
     public TileType Type { get; set; }

@@ -25,7 +25,8 @@ public class DoorScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        TryEnter(other.gameObject);
+        if (other.GetComponent<Player>() != null)
+            TryEnter(other.gameObject);
     }
 
     public void TryEnter(GameObject caller)
@@ -53,8 +54,17 @@ public class DoorScript : MonoBehaviour
         TargetRoom.SetActive(true);
         caller.GetComponent<Player>().currentRoomID = TargetRoom.GetComponent<createRoom>().RoomID;
         //Vector3 targetPos = new Vector3(TargetRoom.transform.position.x + posOfTarget.x/2,0, TargetRoom.transform.position.z + posOfTarget.y/2);
-        Vector3 targetPos = new Vector3((posOfTarget.x + TargetRoom.transform.position.x) - (int)(TargetRoom.GetComponent<createRoom>().roomSize.x / 2), 1, 
-                                        (posOfTarget.y + TargetRoom.transform.position.z)  - ((int)(TargetRoom.GetComponent<createRoom>().roomSize.y / 2)));
+        //Vector3 targetPos = new Vector3((posOfTarget.x + TargetRoom.transform.position.x) - (int)(TargetRoom.GetComponent<createRoom>().roomSize.x / 2), 1, 
+        //                                (posOfTarget.y + TargetRoom.transform.position.z)  - ((int)(TargetRoom.GetComponent<createRoom>().roomSize.y / 2)));
+        //Debug.Log(posOfTarget);
+        
+        //foreach(Vector2 v in TargetRoom.GetComponent<createRoom>().doorsIndexed.Keys)
+        //{
+        //    Debug.Log("     " + v);
+        //}
+        Vector3 targetPos = new Vector3(TargetRoom.transform.position.x + TargetRoom.GetComponent<createRoom>().doorsIndexed[posOfTarget].x,
+                                        1,
+                                        TargetRoom.transform.position.z + TargetRoom.GetComponent<createRoom>().doorsIndexed[posOfTarget].z);
         caller.transform.position = targetPos;
         //Debug.Log(posOfTarget + "         " + targetPos);
 

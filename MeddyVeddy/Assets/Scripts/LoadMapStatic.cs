@@ -60,6 +60,7 @@ public static class LoadMapStatic
         bool[,] enemies = new bool[x, z];
         bool[,] treasure = new bool[x, z];
         string[,] doors = doorsToString(x, z, r, d);
+        bool[,] bossCenter = new bool[x, z];
 
         if (r.Tiles.tiles == null)
             Debug.Log("r.Tiles.tiles");
@@ -77,9 +78,13 @@ public static class LoadMapStatic
                 treasure[(int)r.Tiles.tiles[i].X, (int)r.Tiles.tiles[i].Y] = true;
             }
         }
-
+        for (int i = 0; i < r.Customs.customs.Count; i++)
+        {
+            //Debug.Log("Ska ´finnas en boss");
+            bossCenter[r.Customs.customs[i].X, r.Customs.customs[i].Y] = true;
+        }
         GameObject newRoom = GameObject.Instantiate(room);
-        newRoom.GetComponent<createRoom>().Create(roomID, x, z, walls, enemies, doors, treasure);
+        newRoom.GetComponent<createRoom>().Create(roomID, x, z, walls, enemies, doors, treasure, bossCenter);
         newRoom.GetComponent<createRoom>().XmlID = XmlID;
         return newRoom;
     }

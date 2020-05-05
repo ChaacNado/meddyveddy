@@ -11,17 +11,7 @@ public class spawnMap : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        string folderPath = Path.Combine(Application.dataPath, "Maps/" + "TestMap" + "/dungeon/" );
-        string path = folderPath + "HopefullyRightFile.xml";
-        FileInfo fileInfo = new FileInfo(path);
-
-        if (fileInfo.Exists)
-        {
-            LoadMapStatic.LoadMap(path, Dungeon, Room, folderPath);
-        }else
-        {
-            Debug.Log(path + "                  ERROR PATH");
-        }
+        
         // LoadMapStatic.LoadMap(System.IO.Directory.GetCurrentDirectory() + "/Assets/Maps/testMap.xml");
     }
 
@@ -29,5 +19,20 @@ public class spawnMap : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void SpawnMap(string input = "TestMap")
+    {
+        string folderPath = Path.Combine(Application.dataPath, "Maps/" + input + "/dungeon/");
+        string path = folderPath + "Entry.xml";
+        FileInfo fileInfo = new FileInfo(path);
+
+        if (fileInfo.Exists)
+        {
+            LoadMapStatic.LoadMap(path, Dungeon, Room, folderPath);
+        } else
+        {
+            Debug.Log(path + "                  ERROR PATH");
+        }
     }
 }

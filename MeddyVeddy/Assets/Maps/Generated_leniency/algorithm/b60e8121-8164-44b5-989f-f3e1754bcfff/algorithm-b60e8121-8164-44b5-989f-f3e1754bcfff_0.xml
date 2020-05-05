@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE Run SYSTEM "algorithm.dtd">
+<Run ID="b60e8121-8164-44b5-989f-f3e1754bcfff">
+    <Dimensions>
+        <Dimension granularity="10.0" name="LENIENCY"/>
+        <Dimension granularity="5.0" name="NUMBER_PATTERNS"/>
+    </Dimensions>
+    <Cells>
+        <Cell ROOM_ID="41ecf61c-0756-477a-b67b-240b961d5473" fitness="0.9200686813186812"/>
+        <Cell ROOM_ID="6a78f290-f93c-412b-a930-833411f0374e" fitness="0.926191130298273"/>
+        <Cell ROOM_ID="f0c89117-8628-4d05-a905-6de35ba955ff" fitness="0.9451489441930621"/>
+        <Cell ROOM_ID="a1863c0c-f191-4657-97b3-c9b074179db0" fitness="0.9552949048374306"/>
+        <Cell ROOM_ID="bed44ee1-7b68-4bd3-a1b1-26bb1a0b62f4" fitness="0.9643682012432013"/>
+        <Cell ROOM_ID="0a95478b-3502-42ef-a5e1-9f0445ef2266" fitness="0.969048273155416"/>
+        <Cell ROOM_ID="0c867b4b-175b-47d0-ab02-ed9b1a193407" fitness="0.9684086052836054"/>
+        <Cell ROOM_ID="8062975d-3485-4744-b96c-b4b6ac0d29d1" fitness="0.9844187062937063"/>
+        <Cell ROOM_ID="8bd558f0-c124-4467-b7c8-e5e4b6cf86ce" fitness="0.9858076923076924"/>
+        <Cell ROOM_ID="0efb7b27-a010-4283-a04e-ad61d5bfc533" fitness="0.98098704866562"/>
+        <Cell ROOM_ID="1cb1389b-e3d9-482c-98de-e41d08dfbeaa" fitness="0.8634415514261018"/>
+        <Cell ROOM_ID="259907b4-fca5-40fd-8def-7e809dab04ab" fitness="0.9057420568561871"/>
+        <Cell ROOM_ID="f5ba6a66-c131-464b-9e24-48bd6cf23a6b" fitness="0.9197790507364977"/>
+        <Cell ROOM_ID="b2eb3449-3afa-4e7d-8a38-f4a3ba05169a" fitness="0.9400854700854702"/>
+        <Cell ROOM_ID="aa8a1ef4-202e-4558-9b31-1b81be6c6a8f" fitness="0.9541550736497546"/>
+        <Cell ROOM_ID="af065289-62da-4b0b-9053-193cfbe43504" fitness="0.9516516749379653"/>
+        <Cell ROOM_ID="07948005-dd58-481f-9f07-6e8207d1b980" fitness="0.9605380523731588"/>
+        <Cell ROOM_ID="d01c3fae-033b-42e0-b887-73417bd3c13d" fitness="0.9591785566583955"/>
+        <Cell ROOM_ID="54329522-e537-49f4-95a8-b2cd8cd15195" fitness="0.9582351762820513"/>
+        <Cell ROOM_ID="f26f57b4-7515-46b0-a46c-8e3809c80dc1" fitness="0.9541550736497546"/>
+        <Cell ROOM_ID="420e7ec9-e599-4050-ac1b-1bd417d347fa" fitness="0.845369591346154"/>
+        <Cell ROOM_ID="af229b86-8398-405e-9401-071cca75ca8d" fitness="0.8928756339814035"/>
+        <Cell ROOM_ID="d7f15528-5a96-4251-8c65-e30ce3011ee9" fitness="0.8967140468227424"/>
+        <Cell ROOM_ID="7f763992-1c4b-48e5-9b2a-5e35ce178921" fitness="0.9115131022823332"/>
+        <Cell ROOM_ID="dab053c2-7228-4333-98bf-e4185636c2d2" fitness="0.9314075854700855"/>
+        <Cell ROOM_ID="892abb59-858d-4ef5-bbce-90c454201bb3" fitness="0.9362780008453087"/>
+        <Cell ROOM_ID="22a0112e-6250-45db-8704-4e78d25cd080" fitness="0.9390999793217535"/>
+        <Cell ROOM_ID="36b7c7a6-c219-4c3e-babf-152babede196" fitness="0.943125"/>
+        <Cell ROOM_ID="d3d1624c-8da2-4118-ac93-a5e2f3f9db7a" fitness="0.943125"/>
+        <Cell ROOM_ID="8681670d-d0f9-4514-b00c-be24e2d4ad74" fitness="0.9358741728701406"/>
+        <Cell ROOM_ID="NULL"/>
+        <Cell ROOM_ID="1b9d8b9f-651d-4895-ae6e-440819f11d98" fitness="0.8555631787330319"/>
+        <Cell ROOM_ID="7a4fff83-d7c8-4247-801f-0bcc0dfe7f29" fitness="0.8798018582541053"/>
+        <Cell ROOM_ID="a1aa38b0-9dd3-4aac-a0e3-571cae72297b" fitness="0.8906834571678321"/>
+        <Cell ROOM_ID="7fa747b4-7257-4bf7-8824-09c1b8cb93d5" fitness="0.9194902753496503"/>
+        <Cell ROOM_ID="2d7d7404-5e56-404f-8be2-ed02a419c819" fitness="0.9242761452031114"/>
+        <Cell ROOM_ID="cb3443bb-6871-4750-a57c-268b30de3555" fitness="0.9256511752136752"/>
+        <Cell ROOM_ID="4f2be6fa-01d5-419d-86e3-b6f3332958c9" fitness="0.9276469317199654"/>
+        <Cell ROOM_ID="3ef957eb-add1-437b-9f95-6d18fbd976ff" fitness="0.926784188034188"/>
+        <Cell ROOM_ID="adc62dbd-95a1-4924-bb4e-8656e9757c33" fitness="0.9209566767502161"/>
+        <Cell ROOM_ID="NULL"/>
+        <Cell ROOM_ID="NULL"/>
+        <Cell ROOM_ID="6beac3f2-bfd0-4873-9776-21851857ab36" fitness="0.8523455070970698"/>
+        <Cell ROOM_ID="3e2c2489-b24a-400a-a7dc-cdb46d26b1f4" fitness="0.8794749885531137"/>
+        <Cell ROOM_ID="43ea7fd0-af9a-43e9-8630-7f3d1f1ea804" fitness="0.8985035366931919"/>
+        <Cell ROOM_ID="8f234057-8f82-4633-bc4e-b7db45378162" fitness="0.9088483642793987"/>
+        <Cell ROOM_ID="406cadab-7457-412b-8d66-0bc12a76d15e" fitness="0.9065495137046862"/>
+        <Cell ROOM_ID="7d049209-8b4a-4522-b39c-8cd26f10ea65" fitness="0.9090184813348416"/>
+        <Cell ROOM_ID="cef30743-860d-459f-8d35-010a27d7e93e" fitness="0.9113303103146853"/>
+        <Cell ROOM_ID="6267b7c7-e4b2-40de-af01-75d6d2461426" fitness="0.9067848557692308"/>
+    </Cells>
+</Run>
