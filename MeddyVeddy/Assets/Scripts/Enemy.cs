@@ -99,12 +99,23 @@ public class Enemy : LivingEntity
         {
             if (Time.time > nextAttackTime)
             {
-                rwController.Shoot();
+                if (isBoss)
+                {
+                    rwController.Shoot();
+                }
                 float sqrDstToTarget = (target.position - transform.position).sqrMagnitude; /* Distance in squared form */
                 if (sqrDstToTarget < Mathf.Pow(attackDistanceThreshold + myCollisionRadius + targetCollisionRadius, 2))
                 {
                     nextAttackTime = Time.time + timeBetweenAttacks;
                     StartCoroutine(Attack());
+                }
+                else
+                {
+                    if (isBoss)
+                    {
+                        nextAttackTime = Time.time + timeBetweenAttacks;
+                        rwController.Shoot();
+                    }
                 }
             }
         }
