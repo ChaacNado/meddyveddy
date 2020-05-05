@@ -9,6 +9,8 @@ public class Enemy : LivingEntity
     public enum State { Idle, Chasing, Attacking };
     public State currentState;
 
+    public bool isBoss;
+
     NavMeshAgent pathFinder;
     Transform target;
     GameObject player;
@@ -31,9 +33,18 @@ public class Enemy : LivingEntity
     bool hasTarget;
     public bool inSameRoom;
 
+    void Awake()
+    {
+        if (isBoss)
+        {
+            UpgradeToBoss();
+        }
+    }
+
     protected override void Start()
     {
         base.Start();
+
         pathFinder = GetComponent<NavMeshAgent>();
         skinMaterial = GetComponent<Renderer>().material;
         originalColor = skinMaterial.color;
@@ -53,6 +64,13 @@ public class Enemy : LivingEntity
 
             StartCoroutine(UpdatePath());
         }
+    }
+
+    void UpgradeToBoss()
+    {
+        transform.localScale = transform.localScale * 3;
+        startingHealth = 10;
+        GetComponent<NavMeshAgent>().speed = GetComponent<NavMeshAgent>().speed / 3;
     }
 
     void OnTargetDeath()
