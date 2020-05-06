@@ -17,25 +17,27 @@ public class RangedWeapon : MonoBehaviour
 
     public void Shoot()
     {
-        if (shootStyle == ShootStyle.Single)
+        if (Time.time > nextShotTime)
         {
-            SingleShot();
-        }
-        else if (shootStyle == ShootStyle.Burst)
-        {
-            BurstFire();
+            if (shootStyle == ShootStyle.Single)
+            {
+                SingleShot();
+            }
+            else if (shootStyle == ShootStyle.Burst)
+            {
+                BurstFire();
+            }
         }
     }
 
     void SingleShot()
     {
         /// Shoot when the current time is greater than the nextShotTime
-        if (Time.time > nextShotTime)
-        {
-            nextShotTime = Time.time + msBetweenShots / 1000;
-            Projectile newProjectile = Instantiate(projectile, front.position, front.rotation) as Projectile;
-            newProjectile.SetSpeed(initialVelocity);
-        }
+
+        nextShotTime = Time.time + msBetweenShots / 1000;
+        Projectile newProjectile = Instantiate(projectile, front.position, front.rotation) as Projectile;
+        newProjectile.SetSpeed(initialVelocity);
+
     }
 
     void BurstFire()
