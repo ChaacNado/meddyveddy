@@ -11,6 +11,8 @@ public class Enemy : LivingEntity
 
     public bool isBoss = false;
 
+    public LayerMask collisionMask;
+
     RangedWeaponController rwController;
 
     NavMeshAgent pathFinder;
@@ -24,6 +26,8 @@ public class Enemy : LivingEntity
     public int roomID;
 
     //float detectionDistanceThreshold = 5f;
+    float aggroRange = 15f;
+
     float attackDistanceThreshold = 0.5f;
     float timeBetweenAttacks = 1;
     float damage = 1;
@@ -33,6 +37,7 @@ public class Enemy : LivingEntity
     float targetCollisionRadius;
 
     bool hasTarget;
+    bool onAlert;
     public bool inSameRoom;
 
     protected override void Start()
@@ -85,14 +90,25 @@ public class Enemy : LivingEntity
     {
         /// Updates the pathfinder only when the player is in the same room
         if (inSameRoom)
-        {
-            CheckRange();
-
+        {   
             if (hasTarget)
             {
-                if (Time.time > nextAttackTime)
+                Vector3 targetPosition = new Vector3(target.position.x, transform.position.y, target.position.z);
+                transform.LookAt(targetPosition);
+                float sqrDstToTarget = (target.position - transform.position).sqrMagnitude; /* Distance in squared form */
+                if (sqrDstToTarget <= aggroRange || onAlert || Input.GetMouseButton(0))
                 {
-                    float sqrDstToTarget = (target.position - transform.position).sqrMagnitude; /* Distance in squared form */
+                    onAlert = true;
+                    currentState = State.Chasing;
+                    pathFinder.enabled = true;
+                }
+                else
+                {
+                    currentState = State.Idle;
+                    pathFinder.enabled = false;
+                }
+                if (Time.time > nextAttackTime)
+                {           
                     if (sqrDstToTarget < Mathf.Pow(attackDistanceThreshold + myCollisionRadius + targetCollisionRadius, 2))
                     {
                         nextAttackTime = Time.time + timeBetweenAttacks;
@@ -111,18 +127,9 @@ public class Enemy : LivingEntity
         }
         else
         {
+            onAlert = false;
             currentState = State.Idle;
             pathFinder.enabled = false;
-        }
-    }
-
-    void CheckRange()
-    {
-        Debug.Log(Vector3.Distance(transform.position, target.position));
-        if (Vector3.Distance(transform.position, target.position) <= 1)
-        {
-            currentState = State.Chasing;
-            pathFinder.enabled = true;
         }
     }
 

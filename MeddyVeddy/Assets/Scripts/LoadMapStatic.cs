@@ -42,7 +42,7 @@ public static class LoadMapStatic
             {
                 foreach (GameObject target in rooms)
                 {
-                    Debug.Log(target.GetComponent<createRoom>().XmlID + "   :   " + d.GetComponent<DoorScript>().XmlTargetId);
+                    //Debug.Log(target.GetComponent<createRoom>().XmlID + "   :   " + d.GetComponent<DoorScript>().XmlTargetId);
                     if (target.GetComponent<createRoom>().XmlID.Equals(d.GetComponent<DoorScript>().XmlTargetId))
                     {
                         d.GetComponent<DoorScript>().TargetRoom = target;
