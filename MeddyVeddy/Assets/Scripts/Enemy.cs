@@ -119,7 +119,7 @@ public class Enemy : LivingEntity
                         if (isBoss)
                         {
                             nextAttackTime = Time.time + timeBetweenAttacks;
-                            rwController.BurstFire();
+                            rwController.Shoot();
                         }
                     }
                 }

@@ -33,11 +33,4 @@ public class RangedWeaponController : MonoBehaviour
             equippedRw.Shoot();
         }
     }
-
-    public void BurstFire()
-    {
-        Shoot();
-        Invoke("Shoot", 0.2f);
-        Invoke("Shoot", 0.4f);
-    }
 }

@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0d1b51fbd6ebec49a1aead958fa5200, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shootStyle: 1
   front: {fileID: 1885466763115775133}
   projectile: {fileID: 4509767176544364125, guid: 914e00ce6e8d878459ace2823ff03fb7,
     type: 3}
