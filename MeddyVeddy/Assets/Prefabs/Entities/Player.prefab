@@ -158,9 +158,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25ca6c14225927c44a43a1f8ce2ee4ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponHold: {fileID: 3042943324551028848}
-  startingWeapon: {fileID: -2762785731279857908, guid: 39f69f0e51c3faf428b130ae4b9cdd07,
-    type: 3}
+  weaponPos: {fileID: 3042943324551028848}
+  weapon: {fileID: -2762785731279857908, guid: 39f69f0e51c3faf428b130ae4b9cdd07, type: 3}
 --- !u!108 &7249204664565090530
 Light:
   m_ObjectHideFlags: 0

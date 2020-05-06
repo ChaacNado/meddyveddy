@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class RangedWeaponController : MonoBehaviour
 {
-    public Transform weaponHold;
-    public RangedWeapon startingWeapon;
+    public Transform weaponPos;
+    public RangedWeapon weapon;
     RangedWeapon equippedRw;
 
     void Start()
     {
-        if (startingWeapon != null)
+        if (weapon != null)
         {
-            EquipWeapon(startingWeapon);
+            EquipWeapon(weapon);
         }
     }
 
@@ -22,8 +22,8 @@ public class RangedWeaponController : MonoBehaviour
         {
             Destroy(equippedRw.gameObject);
         }
-        equippedRw = Instantiate(rwToEquip, weaponHold.position, weaponHold.rotation) as RangedWeapon;
-        equippedRw.transform.parent = weaponHold;
+        equippedRw = Instantiate(rwToEquip, weaponPos.position, weaponPos.rotation) as RangedWeapon;
+        equippedRw.transform.parent = weaponPos;
     }
 
     public void Shoot()
@@ -32,5 +32,12 @@ public class RangedWeaponController : MonoBehaviour
         {
             equippedRw.Shoot();
         }
+    }
+
+    public void BurstFire()
+    {
+        Shoot();
+        Invoke("Shoot", 0.2f);
+        Invoke("Shoot", 0.4f);
     }
 }

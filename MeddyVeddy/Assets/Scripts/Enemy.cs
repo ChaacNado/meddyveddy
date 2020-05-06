@@ -103,7 +103,7 @@ public class Enemy : LivingEntity
                         if (isBoss)
                         {
                             nextAttackTime = Time.time + timeBetweenAttacks;
-                            RangedAttack();
+                            rwController.BurstFire();
                         }
                     }
                 }
@@ -114,18 +114,6 @@ public class Enemy : LivingEntity
             currentState = State.Idle;
             pathFinder.enabled = false;
         }
-    }
-
-    void RangedAttack()
-    {
-        Shoot();
-        Invoke("Shoot", 0.2f);
-        Invoke("Shoot", 0.4f);
-    }
-
-    void Shoot()
-    {
-        rwController.Shoot();
     }
 
     void CheckRange()
