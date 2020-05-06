@@ -9,6 +9,8 @@ public class Enemy : LivingEntity
     public enum State { Idle, Chasing, Attacking };
     public State currentState;
 
+    public ParticleSystem deathEffect;
+
     public bool isBoss = false;
 
     public LayerMask collisionMask;
@@ -25,7 +27,6 @@ public class Enemy : LivingEntity
 
     public int roomID;
 
-    //float detectionDistanceThreshold = 5f;
     float aggroRange = 15f;
 
     float attackDistanceThreshold = 0.5f;
@@ -69,6 +70,15 @@ public class Enemy : LivingEntity
 
             StartCoroutine(UpdatePath());
         }
+    }
+
+    public override void TakeHit(float damage, Vector3 hitPoint, Vector3 hitDirection)
+    {
+        if(damage >= health)
+        {
+            Destroy(Instantiate(deathEffect.gameObject, hitPoint, Quaternion.FromToRotation(Vector3.forward, hitDirection)) as GameObject, deathEffect.startLifetime);
+        }
+        base.TakeHit(damage, hitPoint, hitDirection);
     }
 
     void UpgradeToBoss()

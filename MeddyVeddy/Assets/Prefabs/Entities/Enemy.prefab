@@ -112,6 +112,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingHealth: 1
   currentState: 0
+  deathEffect: {fileID: 3678821946278462683, guid: d33533224ecc701449c3db1316af393b,
+    type: 3}
   isBoss: 0
   collisionMask:
     serializedVersion: 2
