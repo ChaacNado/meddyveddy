@@ -112,7 +112,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingHealth: 1
   currentState: 0
-  isBoss: 0
+  isBoss: 1
   roomID: 0
   inSameRoom: 0
 --- !u!195 &1858548003856420456

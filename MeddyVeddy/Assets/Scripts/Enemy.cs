@@ -87,41 +87,55 @@ public class Enemy : LivingEntity
         if (inSameRoom)
         {
             CheckRange();
+
+            if (hasTarget)
+            {
+                if (Time.time > nextAttackTime)
+                {
+                    float sqrDstToTarget = (target.position - transform.position).sqrMagnitude; /* Distance in squared form */
+                    if (sqrDstToTarget < Mathf.Pow(attackDistanceThreshold + myCollisionRadius + targetCollisionRadius, 2))
+                    {
+                        nextAttackTime = Time.time + timeBetweenAttacks;
+                        StartCoroutine(Attack());
+                    }
+                    else
+                    {
+                        if (isBoss)
+                        {
+                            nextAttackTime = Time.time + timeBetweenAttacks;
+                            RangedAttack();
+                        }
+                    }
+                }
+            }
         }
         else
         {
             currentState = State.Idle;
             pathFinder.enabled = false;
         }
+    }
 
-        if (hasTarget)
-        {
-            if (Time.time > nextAttackTime)
-            {
-                float sqrDstToTarget = (target.position - transform.position).sqrMagnitude; /* Distance in squared form */
-                if (sqrDstToTarget < Mathf.Pow(attackDistanceThreshold + myCollisionRadius + targetCollisionRadius, 2))
-                {
-                    nextAttackTime = Time.time + timeBetweenAttacks;
-                    StartCoroutine(Attack());
-                }
-                else
-                {
-                    if (isBoss)
-                    {
-                        nextAttackTime = Time.time + timeBetweenAttacks;
-                        rwController.Shoot();
-                    }
-                }
-            }
-        }
+    void RangedAttack()
+    {
+        Shoot();
+        Invoke("Shoot", 0.2f);
+        Invoke("Shoot", 0.4f);
+    }
+
+    void Shoot()
+    {
+        rwController.Shoot();
     }
 
     void CheckRange()
     {
-        // Possibly add code to check distance to target, and only detect player if close enough
-
-        currentState = State.Chasing;
-        pathFinder.enabled = true;
+        Debug.Log(Vector3.Distance(transform.position, target.position));
+        if (Vector3.Distance(transform.position, target.position) <= 1)
+        {
+            currentState = State.Chasing;
+            pathFinder.enabled = true;
+        }
     }
 
     IEnumerator Attack()
@@ -164,7 +178,7 @@ public class Enemy : LivingEntity
     /// To avoid recalculating the path every frame, which can be quite expensive
     IEnumerator UpdatePath()
     {
-        float refreshRate = 0.25f; /* How often in seconds the agent will update its path */
+        float refreshRate = 0.05f; /* How often in seconds the agent will update its path */
 
         while (hasTarget)
         {
