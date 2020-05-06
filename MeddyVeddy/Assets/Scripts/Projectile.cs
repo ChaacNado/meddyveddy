@@ -6,7 +6,7 @@ public class Projectile : MonoBehaviour
 {
     public LayerMask collisionMask;
     float speed;
-    float damage = 1;
+    public float damage = 1;
 
     float lifeTime = 3;
     float rayExtendingLength = 0.1f;  /* Used to extend the length of the ray, in order to hit quick moving objects effectively */

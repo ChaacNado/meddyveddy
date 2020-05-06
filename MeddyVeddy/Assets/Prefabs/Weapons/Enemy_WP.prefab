@@ -48,8 +48,10 @@ MonoBehaviour:
   front: {fileID: 1885466763115775133}
   projectile: {fileID: 4509767176544364125, guid: 914e00ce6e8d878459ace2823ff03fb7,
     type: 3}
-  msBetweenShots: 150
+  msBetweenShots: 250
   initialVelocity: 20
+  burstInterval: 0.2
+  burstAmount: 5
 --- !u!1 &6415031747881053976
 GameObject:
   m_ObjectHideFlags: 0

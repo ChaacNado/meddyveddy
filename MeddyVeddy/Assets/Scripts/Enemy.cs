@@ -86,7 +86,7 @@ public class Enemy : LivingEntity
         transform.localScale = transform.localScale * 3;
         startingHealth = 10;
         health = startingHealth;
-        attackDistanceThreshold = 1.5f;
+        attackDistanceThreshold = 2f;
         GetComponent<NavMeshAgent>().speed = GetComponent<NavMeshAgent>().speed / 3;
     }
 
@@ -109,8 +109,16 @@ public class Enemy : LivingEntity
                 if (sqrDstToTarget <= aggroRange || onAlert || Input.GetMouseButton(0))
                 {
                     onAlert = true;
-                    currentState = State.Chasing;
-                    pathFinder.enabled = true;
+                    if (!isBoss || sqrDstToTarget <= aggroRange / 2 * 3)
+                    {
+                        currentState = State.Chasing;
+                        pathFinder.enabled = true;
+                    }
+                    else
+                    {
+                        currentState = State.Idle;
+                        pathFinder.enabled = false;
+                    }
                 }
                 else
                 {
@@ -126,10 +134,10 @@ public class Enemy : LivingEntity
                     }
                     else
                     {
-                        if (isBoss)
+                        if (isBoss && onAlert)
                         {
                             nextAttackTime = Time.time + timeBetweenAttacks;
-                            rwController.Shoot();
+                            rwController.OnTriggerHold();
                         }
                     }
                 }

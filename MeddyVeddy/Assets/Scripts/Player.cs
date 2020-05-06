@@ -26,6 +26,12 @@ public class Player : LivingEntity
     
     void Update()
     {
+        // Pause the game
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Debug.Break();
+        }
+
         /// Movement input
         Vector3 moveInput = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
         Vector3 moveVelocity = moveInput.normalized * moveSpeed;
@@ -46,9 +52,13 @@ public class Player : LivingEntity
         #endregion
 
         /// Weapon input
-        if (Input.GetMouseButton(0)) /* Left mouse btn held down */
+        if (Input.GetMouseButton(0))/* Left mouse btn held down */
         {
-            rwController.Shoot();
+            rwController.OnTriggerHold();
+        }
+        if (Input.GetMouseButtonUp(0))
+        {
+            rwController.OnTriggerRelease();
         }
     }
 

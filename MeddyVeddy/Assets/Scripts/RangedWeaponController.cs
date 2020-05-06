@@ -26,11 +26,19 @@ public class RangedWeaponController : MonoBehaviour
         equippedRw.transform.parent = weaponPos;
     }
 
-    public void Shoot()
+    public void OnTriggerHold()
     {
         if (equippedRw != null)
         {
-            equippedRw.Shoot();
+            equippedRw.OnTriggerHold();
+        }
+    }
+
+    public void OnTriggerRelease()
+    {
+        if (equippedRw != null)
+        {
+            equippedRw.OnTriggerRelease();
         }
     }
 }

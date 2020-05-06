@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum ShootStyle { Single, Burst }
+public enum ShootStyle { Auto, Burst, Spread }
 
 public class RangedWeapon : MonoBehaviour
 {
@@ -12,14 +12,17 @@ public class RangedWeapon : MonoBehaviour
     public Projectile projectile;
     public float msBetweenShots = 100;
     public float initialVelocity = 35;
+    public float burstInterval = 0.2f;
+    public int bulletAmount = 5;
 
     float nextShotTime;
+    bool triggerReleasedSinceLastShot;
 
     public void Shoot()
     {
         if (Time.time > nextShotTime)
         {
-            if (shootStyle == ShootStyle.Single)
+            if (shootStyle == ShootStyle.Auto)
             {
                 SingleShot();
             }
@@ -27,23 +30,46 @@ public class RangedWeapon : MonoBehaviour
             {
                 BurstFire();
             }
+            else if (shootStyle == ShootStyle.Spread)
+            {
+                SpreadShot();
+            }
         }
     }
 
     void SingleShot()
     {
         /// Shoot when the current time is greater than the nextShotTime
-
         nextShotTime = Time.time + msBetweenShots / 1000;
         Projectile newProjectile = Instantiate(projectile, front.position, front.rotation) as Projectile;
         newProjectile.SetSpeed(initialVelocity);
-
     }
 
     void BurstFire()
     {
-        SingleShot();
-        Invoke("SingleShot", 0.2f);
-        Invoke("SingleShot", 0.4f);
+        for (int i = 0; i < bulletAmount; i++)
+        {
+            Invoke("SingleShot", i * burstInterval);
+        }
+        //Invoke("SingleShot", burstInterval + burstInterval);
+    }
+
+    void SpreadShot()
+    {
+        /// Shoot when the current time is greater than the nextShotTime
+        nextShotTime = Time.time + msBetweenShots / 1000;
+        Projectile newProjectile = Instantiate(projectile, front.position, front.rotation) as Projectile;
+        newProjectile.SetSpeed(initialVelocity);
+    }
+
+    public void OnTriggerHold()
+    {
+        Shoot();
+        triggerReleasedSinceLastShot = false;
+    }
+
+    public void OnTriggerRelease()
+    {
+        triggerReleasedSinceLastShot = true;
     }
 }
