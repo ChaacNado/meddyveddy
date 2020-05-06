@@ -14,6 +14,7 @@ public class RangedWeapon : MonoBehaviour
     public float initialVelocity = 35;
     public float burstInterval = 0.2f;
     public int bulletAmount = 5;
+    public float spread = 30f;
 
     float nextShotTime;
     bool triggerReleasedSinceLastShot;
@@ -58,8 +59,11 @@ public class RangedWeapon : MonoBehaviour
     {
         /// Shoot when the current time is greater than the nextShotTime
         nextShotTime = Time.time + msBetweenShots / 1000;
-        Projectile newProjectile = Instantiate(projectile, front.position, front.rotation) as Projectile;
-        newProjectile.SetSpeed(initialVelocity);
+        for (int i = 0; i < bulletAmount; i++)
+        {
+            Projectile newProjectile = Instantiate(projectile, front.position, front.rotation * Quaternion.Euler(0, Random.Range(-spread, spread), 0)) as Projectile;
+            newProjectile.SetSpeed(initialVelocity);
+        }
     }
 
     public void OnTriggerHold()
