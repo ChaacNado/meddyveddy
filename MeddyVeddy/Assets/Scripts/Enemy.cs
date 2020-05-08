@@ -14,6 +14,7 @@ public class Enemy : LivingEntity
     public bool isBoss = false;
 
     public LayerMask collisionMask;
+    CapsuleCollider capsuleCollider;
 
     RangedWeaponController rwController;
 
@@ -34,6 +35,8 @@ public class Enemy : LivingEntity
     float damage = 1;
 
     float nextAttackTime;
+    float idleTime = 5f;
+    float roamDistance = 5f;
     float myCollisionRadius;
     float targetCollisionRadius;
 
@@ -44,6 +47,7 @@ public class Enemy : LivingEntity
     protected override void Start()
     {
         base.Start();
+        capsuleCollider = GetComponent<CapsuleCollider>();
         rwController = GetComponent<RangedWeaponController>();
 
         if (isBoss)
@@ -74,7 +78,7 @@ public class Enemy : LivingEntity
 
     public override void TakeHit(float damage, Vector3 hitPoint, Vector3 hitDirection)
     {
-        if(damage >= health)
+        if (damage >= health)
         {
             Destroy(Instantiate(deathEffect.gameObject, hitPoint, Quaternion.FromToRotation(Vector3.forward, hitDirection)) as GameObject, deathEffect.startLifetime);
         }
@@ -84,7 +88,7 @@ public class Enemy : LivingEntity
     void UpgradeToBoss()
     {
         transform.localScale = transform.localScale * 3;
-        startingHealth = 10;
+        startingHealth = 20;
         health = startingHealth;
         attackDistanceThreshold = 2f;
         GetComponent<NavMeshAgent>().speed = GetComponent<NavMeshAgent>().speed / 3;
@@ -100,7 +104,7 @@ public class Enemy : LivingEntity
     {
         /// Updates the pathfinder only when the player is in the same room
         if (inSameRoom)
-        {   
+        {
             if (hasTarget)
             {
                 Vector3 targetPosition = new Vector3(target.position.x, transform.position.y, target.position.z);
@@ -109,7 +113,7 @@ public class Enemy : LivingEntity
                 if (sqrDstToTarget <= aggroRange || onAlert || Input.GetMouseButton(0))
                 {
                     onAlert = true;
-                    if (!isBoss || sqrDstToTarget <= aggroRange / 2 * 3)
+                    if (!isBoss || sqrDstToTarget <= aggroRange * 2)
                     {
                         currentState = State.Chasing;
                         pathFinder.enabled = true;
@@ -126,7 +130,7 @@ public class Enemy : LivingEntity
                     pathFinder.enabled = false;
                 }
                 if (Time.time > nextAttackTime)
-                {           
+                {
                     if (sqrDstToTarget < Mathf.Pow(attackDistanceThreshold + myCollisionRadius + targetCollisionRadius, 2))
                     {
                         nextAttackTime = Time.time + timeBetweenAttacks;

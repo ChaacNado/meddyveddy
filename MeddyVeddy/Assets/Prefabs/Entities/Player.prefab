@@ -142,10 +142,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingHealth: 15
   moveSpeed: 5
-  Keys: []
   currentRoomID: 0
   disableNextDoor: 0
   points: 0
+  Keys: 
 --- !u!114 &-8146252497673941538
 MonoBehaviour:
   m_ObjectHideFlags: 0

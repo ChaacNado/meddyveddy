@@ -13,7 +13,7 @@ public class RangedWeapon : MonoBehaviour
     public float msBetweenShots = 100;
     public float initialVelocity = 35;
     public float burstInterval = 0.2f;
-    public int bulletAmount = 5;
+    public int bulletAmount = 6;
     public float spread = 30f;
 
     float nextShotTime;

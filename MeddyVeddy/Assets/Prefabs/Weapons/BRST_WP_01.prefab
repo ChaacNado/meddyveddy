@@ -52,7 +52,7 @@ MonoBehaviour:
   msBetweenShots: 700
   initialVelocity: 20
   burstInterval: 0.05
-  bulletAmount: 5
+  bulletAmount: 3
   spread: 30
 --- !u!1 &3125668265969007152
 GameObject:
