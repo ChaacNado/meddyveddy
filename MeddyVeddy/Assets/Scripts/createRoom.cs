@@ -9,8 +9,12 @@ public class createRoom : MonoBehaviour
     public Enemy enemy;
     public GameObject Treasure;
 
+    public RangedWeapon wep1;
+    public RangedWeapon wep2;
+
     public int offsetX = 1, offsetZ = 1;
     List<GameObject> walls = new List<GameObject>();
+    List<GameObject> treasures = new List<GameObject>();
     List<Enemy> enemies = new List<Enemy>();
     GameObject Player;
     public GameObject playerToCreate;
@@ -23,6 +27,7 @@ public class createRoom : MonoBehaviour
     public string XmlID;
     public Dictionary<Vector2, Vector3> doorsIndexed = new Dictionary<Vector2, Vector3>();
 
+    int treasuresSpawned = 0;
 
     void Start()
     {
@@ -110,6 +115,7 @@ public class createRoom : MonoBehaviour
                 else if (treasure[i, j])
                 {
                     CreateTreasure(x, y, roomSizeX, roomSizeZ);
+                    treasuresSpawned++;
                 }
                 else if (!doors[i, j].Equals("0"))
                 {
@@ -126,6 +132,7 @@ public class createRoom : MonoBehaviour
                 }
             }
         }
+        UpgradeTreasure();
         transform.position = roomOffset;
         created = true;
     }
@@ -211,7 +218,7 @@ public class createRoom : MonoBehaviour
         //go.transform.SetParent(gameObject.transform);
         go.transform.parent = transform.Find(holderName);
         string[] splitDoorString = doorString.Split(',');
-
+        go.GetComponent<DoorScript>().RoomID = RoomID;
         //foreach(GameObject r in LoadMapStatic.rooms)
         //{
         //    if (r.GetComponent<createRoom>().XmlID.Equals(splitDoorString[3]))
@@ -235,11 +242,12 @@ public class createRoom : MonoBehaviour
         //Vector3 offset = new Vector3((x * offsetX) - (roomSizeX / 2), 1, (z * offsetZ) - (roomSizeZ / 2));
         go = Init(x, z, roomSizeX, roomSizeZ, Treasure);
         //go.transform.position = offset;
+        treasures.Add(go);
+        go.GetComponent<TreasureScript>().RoomID = RoomID;
         go.transform.parent = transform.Find(holderName);
 
     }
    
-
     public GameObject Init(int x, int z, int roomSizeX, int roomSizeZ, GameObject toInit)
     {
         GameObject toReturn;
@@ -250,5 +258,27 @@ public class createRoom : MonoBehaviour
         toReturn.transform.position = offset;
 
         return toReturn;
+    }
+
+    public void UpgradeTreasure()
+    {
+        if (treasuresSpawned > 1)
+        {
+            int indexKey = treasuresSpawned / 2;
+            treasures[indexKey].GetComponent<TreasureScript>().Upgrade(TreasureType.key);
+            if (treasuresSpawned > 8)
+            {
+                int indexLoot = indexKey + indexKey / 2;
+                if (treasuresSpawned > 11)
+                    treasures[indexLoot].GetComponent<TreasureScript>().loot = wep2;
+                else
+                    treasures[indexLoot].GetComponent<TreasureScript>().loot = wep1;
+                treasures[indexLoot].GetComponent<TreasureScript>().Upgrade(TreasureType.loot);
+            }
+            foreach (GameObject d in doors)
+            {
+                d.GetComponent<DoorScript>().KeyID = "locked";
+            }
+        }
     }
 }

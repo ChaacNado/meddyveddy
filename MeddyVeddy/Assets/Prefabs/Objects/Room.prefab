@@ -49,6 +49,8 @@ MonoBehaviour:
   enemy: {fileID: 1858548003856420757, guid: ab007a8106c4e5f4aaaafd6de5e6dd54, type: 3}
   Treasure: {fileID: 6744397235300374075, guid: 3295c109a848b7e4e9d5be7d1008062b,
     type: 3}
+  wep1: {fileID: -2762785731279857908, guid: 82f18a2bf4e21114ba1066c1014cf704, type: 3}
+  wep2: {fileID: -2762785731279857908, guid: 3ee43422685800b418551ad705081060, type: 3}
   offsetX: 1
   offsetZ: 1
   playerToCreate: {fileID: 1532146508573318024, guid: e2f501bda41fc7040a1593a5d2710fe4,
@@ -56,3 +58,5 @@ MonoBehaviour:
   RoomID: 0
   doors: []
   roomSize: {x: 0, y: 0}
+  roomOffset: {x: 0, y: 0, z: 0}
+  XmlID: 

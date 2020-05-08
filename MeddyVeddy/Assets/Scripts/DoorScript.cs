@@ -11,6 +11,7 @@ public class DoorScript : MonoBehaviour
     public bool doorEnabled = true;
     double timeLeft = 2;
     public string XmlTargetId;
+    public int RoomID;
     // Start is called before the first frame update
     void Start()
     {
@@ -42,7 +43,7 @@ public class DoorScript : MonoBehaviour
             Enter(caller);
         else
         {
-            if (caller.GetComponent<Player>().Keys.Contains(KeyID) && doorEnabled)
+            if (caller.GetComponent<Player>().Keys.Contains(RoomID) && doorEnabled)
             {
                 Enter(caller);
             }

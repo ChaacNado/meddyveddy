@@ -123,4 +123,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eabdaca9049103b4ba1e68943a43c066, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Key: {fileID: 5982756719873983292, guid: 73be6c06b57a6be4493e03896d5459ff, type: 3}
+  mat: {fileID: 2100000, guid: 077bb120ba5de9047a944d898d7ccf05, type: 2}
   pointValue: 1
+  RoomID: 0
+  type: 0

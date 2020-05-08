@@ -7,13 +7,14 @@ using UnityEngine;
 public class Player : LivingEntity 
 {
     public float moveSpeed = 5;
-    public List<string> Keys = new List<string>();
+    //public List<string> Keys = new List<string>();
     Camera viewCamera;
     PlayerController controller;
     RangedWeaponController rwController;
     public int currentRoomID = 0;
     public bool disableNextDoor = false;
     public int points = 0;
+    public List<int> Keys = new List<int>();
 
     protected override void Start()
     {
