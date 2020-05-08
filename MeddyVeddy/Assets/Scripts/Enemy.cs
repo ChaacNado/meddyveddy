@@ -35,8 +35,6 @@ public class Enemy : LivingEntity
     float damage = 1;
 
     float nextAttackTime;
-    float idleTime = 5f;
-    float roamDistance = 5f;
     float myCollisionRadius;
     float targetCollisionRadius;
 
@@ -90,6 +88,7 @@ public class Enemy : LivingEntity
         transform.localScale = transform.localScale * 3;
         startingHealth = 20;
         health = startingHealth;
+        damage = 2;
         attackDistanceThreshold = 2f;
         GetComponent<NavMeshAgent>().speed = GetComponent<NavMeshAgent>().speed / 3;
     }
