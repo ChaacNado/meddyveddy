@@ -14,7 +14,7 @@ public class Enemy : LivingEntity
     public bool isBoss = false;
 
     public LayerMask collisionMask;
-    CapsuleCollider capsuleCollider;
+    FieldOfView fow;
 
     RangedWeaponController rwController;
 
@@ -27,8 +27,6 @@ public class Enemy : LivingEntity
     Color originalColor;
 
     public int roomID;
-
-    float aggroRange = 15f;
 
     float attackDistanceThreshold = 0.5f;
     float timeBetweenAttacks = 1;
@@ -45,8 +43,8 @@ public class Enemy : LivingEntity
     protected override void Start()
     {
         base.Start();
-        capsuleCollider = GetComponent<CapsuleCollider>();
         rwController = GetComponent<RangedWeaponController>();
+        fow = GetComponent<FieldOfView>();
 
         if (isBoss)
         {
@@ -90,6 +88,7 @@ public class Enemy : LivingEntity
         health = startingHealth;
         damage = 2;
         attackDistanceThreshold = 2f;
+        fow.viewRadius = fow.viewRadius * 1.5f;
         GetComponent<NavMeshAgent>().speed = GetComponent<NavMeshAgent>().speed / 3;
     }
 
@@ -109,10 +108,10 @@ public class Enemy : LivingEntity
                 Vector3 targetPosition = new Vector3(target.position.x, transform.position.y, target.position.z);
                 transform.LookAt(targetPosition);
                 float sqrDstToTarget = (target.position - transform.position).sqrMagnitude; /* Distance in squared form */
-                if (sqrDstToTarget <= aggroRange || onAlert || Input.GetMouseButton(0))
+                if (fow.targetInSight || onAlert || Input.GetMouseButton(0))
                 {
                     onAlert = true;
-                    if (!isBoss || sqrDstToTarget <= aggroRange * 2)
+                    if (!isBoss || sqrDstToTarget <= fow.viewRadius * 2)
                     {
                         currentState = State.Chasing;
                         pathFinder.enabled = true;
