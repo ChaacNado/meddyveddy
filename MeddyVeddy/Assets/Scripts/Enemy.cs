@@ -41,6 +41,7 @@ public class Enemy : LivingEntity
 
     float alertDuration = 5;
     float alertTime;
+    float alertTimeVariation = 2f;
 
     bool hasTarget;
     bool onAlert;
@@ -120,19 +121,19 @@ public class Enemy : LivingEntity
                 float sqrDstToTarget = (target.position - transform.position).sqrMagnitude; /* Distance in squared form */
                 if (fow.targetInSight || onAlert || Input.GetMouseButton(0))
                 {
-                    GetComponent<NavMeshAgent>().speed = normalSpeed;
-                    onAlert = true;
-
-                    if (!isBoss || sqrDstToTarget <= fow.viewRadius * 2)
+                    if (isBoss)
                     {
-                        currentState = State.Chasing;
-                        pathFinder.enabled = true;
+                        GetComponent<NavMeshAgent>().speed = bossSpeed;
                     }
                     else
                     {
-                        currentState = State.Idle;
-                        pathFinder.enabled = false;
+                        GetComponent<NavMeshAgent>().speed = normalSpeed;
                     }
+
+                    onAlert = true;
+
+                    currentState = State.Chasing;
+                    pathFinder.enabled = true;
 
                     if (fow.targetInSight)
                     {
@@ -140,9 +141,13 @@ public class Enemy : LivingEntity
                     }
                     else
                     {
-                        GetComponent<NavMeshAgent>().speed = normalSpeed / 2;
+                        if (!isBoss)
+                        {
+                            GetComponent<NavMeshAgent>().speed = normalSpeed * 0.75f;
+                        }
+
                         alertTime -= Time.deltaTime;
-                        if (alertTime <= 0)
+                        if (alertTime <= 0 + Random.Range(-alertTimeVariation, alertTimeVariation))
                         {
                             onAlert = false;
                             alertTime = alertDuration;
@@ -168,6 +173,7 @@ public class Enemy : LivingEntity
                     {
                         if (isBoss && onAlert)
                         {
+                            transform.LookAt(targetPosition);
                             nextAttackTime = Time.time + timeBetweenAttacks;
                             rwController.OnTriggerHold();
                         }

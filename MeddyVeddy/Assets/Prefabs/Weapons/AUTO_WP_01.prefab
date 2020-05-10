@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2488899258466974416}
   - component: {fileID: -2762785731279857908}
   m_Layer: 0
-  m_Name: RangedWeapon
+  m_Name: AUTO_WP_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,11 +45,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0d1b51fbd6ebec49a1aead958fa5200, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shootStyle: 0
   front: {fileID: 1885466763115775133}
   projectile: {fileID: 4509767176544364125, guid: bd01b5e9f56763f4680b4d4080835048,
     type: 3}
   msBetweenShots: 400
   initialVelocity: 20
+  burstInterval: 0.2
+  bulletAmount: 5
+  spread: 0
 --- !u!1 &3125668265969007152
 GameObject:
   m_ObjectHideFlags: 0

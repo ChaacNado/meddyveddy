@@ -22,8 +22,8 @@ public class FieldOfView : MonoBehaviour
     public MeshRenderer viewMeshRenderer;
     Mesh viewMesh;
 
-    Color originalColor;
-    Color detectionColor;
+    //Color originalColor;
+    //Color detectionColor;
 
     public bool targetInSight;
 
@@ -34,8 +34,8 @@ public class FieldOfView : MonoBehaviour
         viewMeshFilter.mesh = viewMesh;
         viewMeshRenderer = viewMeshFilter.GetComponent<MeshRenderer>();
 
-        originalColor = viewMeshRenderer.material.color;
-        detectionColor = Color.white;
+        //originalColor = viewMeshRenderer.material.color;
+        //detectionColor = Color.white;
 
         StartCoroutine("FindTargetsWithDelay", .2f);
     }
@@ -52,14 +52,14 @@ public class FieldOfView : MonoBehaviour
 
     void LateUpdate()
     {
-        if (targetInSight)
-        {
-            viewMeshRenderer.material.color = detectionColor;
-        }
-        else
-        {
-            viewMeshRenderer.material.color = originalColor;
-        }
+        //if (targetInSight)
+        //{
+        //    viewMeshRenderer.material.color = detectionColor;
+        //}
+        //else
+        //{
+        //    viewMeshRenderer.material.color = originalColor;
+        //}
         DrawFieldOfView();
     }
 

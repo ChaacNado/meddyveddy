@@ -53,7 +53,7 @@ MonoBehaviour:
   initialVelocity: 20
   burstInterval: 0.05
   bulletAmount: 3
-  spread: 30
+  spread: 0
 --- !u!1 &3125668265969007152
 GameObject:
   m_ObjectHideFlags: 0
