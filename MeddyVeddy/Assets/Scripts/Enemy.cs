@@ -105,13 +105,16 @@ public class Enemy : LivingEntity
     void OnTargetDeath()
     {
         currentState = State.Idle;
-        pathFinder.enabled = false;
         onAlert = false;
         hasTarget = false;
     }
 
     void Update()
     {
+        if (!hasTarget)
+        {
+            pathFinder.enabled = false;
+        }
         /// Updates the pathfinder only when the player is in the same room
         if (inSameRoom)
         {
