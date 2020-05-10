@@ -104,10 +104,10 @@ public class Enemy : LivingEntity
 
     void OnTargetDeath()
     {
-        hasTarget = false;
-        onAlert = false;
-        pathFinder.enabled = false;
         currentState = State.Idle;
+        pathFinder.enabled = false;
+        onAlert = false;
+        hasTarget = false;
     }
 
     void Update()
