@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class playerUI : MonoBehaviour
+public class PlayerUI : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject hp;
