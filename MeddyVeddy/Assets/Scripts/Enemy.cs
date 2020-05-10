@@ -32,9 +32,15 @@ public class Enemy : LivingEntity
     float timeBetweenAttacks = 1;
     float damage = 1;
 
+    float normalSpeed;
+    float bossSpeed;
+
     float nextAttackTime;
     float myCollisionRadius;
     float targetCollisionRadius;
+
+    float alertDuration = 5;
+    float alertTime;
 
     bool hasTarget;
     bool onAlert;
@@ -45,6 +51,9 @@ public class Enemy : LivingEntity
         base.Start();
         rwController = GetComponent<RangedWeaponController>();
         fow = GetComponent<FieldOfView>();
+        normalSpeed = GetComponent<NavMeshAgent>().speed;
+        bossSpeed = GetComponent<NavMeshAgent>().speed / 3;
+        alertTime = alertDuration;
 
         if (isBoss)
         {
@@ -89,12 +98,14 @@ public class Enemy : LivingEntity
         damage = 2;
         attackDistanceThreshold = 2f;
         fow.viewRadius = fow.viewRadius * 1.5f;
-        GetComponent<NavMeshAgent>().speed = GetComponent<NavMeshAgent>().speed / 3;
+        GetComponent<NavMeshAgent>().speed = bossSpeed;
     }
 
     void OnTargetDeath()
     {
         hasTarget = false;
+        onAlert = false;
+        pathFinder.enabled = false;
         currentState = State.Idle;
     }
 
@@ -106,11 +117,12 @@ public class Enemy : LivingEntity
             if (hasTarget)
             {
                 Vector3 targetPosition = new Vector3(target.position.x, transform.position.y, target.position.z);
-                transform.LookAt(targetPosition);
                 float sqrDstToTarget = (target.position - transform.position).sqrMagnitude; /* Distance in squared form */
                 if (fow.targetInSight || onAlert || Input.GetMouseButton(0))
                 {
+                    GetComponent<NavMeshAgent>().speed = normalSpeed;
                     onAlert = true;
+
                     if (!isBoss || sqrDstToTarget <= fow.viewRadius * 2)
                     {
                         currentState = State.Chasing;
@@ -120,6 +132,21 @@ public class Enemy : LivingEntity
                     {
                         currentState = State.Idle;
                         pathFinder.enabled = false;
+                    }
+
+                    if (fow.targetInSight)
+                    {
+                        transform.LookAt(targetPosition);
+                    }
+                    else
+                    {
+                        GetComponent<NavMeshAgent>().speed = normalSpeed / 2;
+                        alertTime -= Time.deltaTime;
+                        if (alertTime <= 0)
+                        {
+                            onAlert = false;
+                            alertTime = alertDuration;
+                        }
                     }
                 }
                 else
@@ -131,8 +158,11 @@ public class Enemy : LivingEntity
                 {
                     if (sqrDstToTarget < Mathf.Pow(attackDistanceThreshold + myCollisionRadius + targetCollisionRadius, 2))
                     {
-                        nextAttackTime = Time.time + timeBetweenAttacks;
-                        StartCoroutine(Attack());
+                        if (fow.targetInSight)
+                        {
+                            nextAttackTime = Time.time + timeBetweenAttacks;
+                            StartCoroutine(Attack());
+                        }
                     }
                     else
                     {

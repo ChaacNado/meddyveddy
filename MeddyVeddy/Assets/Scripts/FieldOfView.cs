@@ -52,6 +52,14 @@ public class FieldOfView : MonoBehaviour
 
     void LateUpdate()
     {
+        if (targetInSight)
+        {
+            viewMeshRenderer.material.color = detectionColor;
+        }
+        else
+        {
+            viewMeshRenderer.material.color = originalColor;
+        }
         DrawFieldOfView();
     }
 
@@ -73,15 +81,17 @@ public class FieldOfView : MonoBehaviour
                 if (!Physics.Raycast(transform.position, dirToTarget, dstToTarget, obstacleMask))
                 {
                     visibleTargets.Add(target);
-                    viewMeshRenderer.material.color = detectionColor;
                     targetInSight = true;
+                }
+                else
+                {
+                    targetInSight = false;
                 }
             }
         }
 
         if (targetsInViewRadius.Length <= 0)
         {
-            viewMeshRenderer.material.color = originalColor;
             targetInSight = false;
         }
     }

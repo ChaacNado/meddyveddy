@@ -8,23 +8,28 @@ public class playerUI : MonoBehaviour
     // Start is called before the first frame update
     public GameObject hp;
     public GameObject score;
-    GameObject player = null;
+    GameObject player;
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (player == null)
-        {
-            player = LoadMapStatic.player;
-        }
-        else
+        if (player != null)
         {
             hp.GetComponent<Text>().text = "Health: " + player.GetComponent<Player>().GetHP();
             score.GetComponent<Text>().text = "Score: " + player.GetComponent<Player>().points;
+        }
+        else
+        {
+            player = GameObject.FindGameObjectWithTag("Player");
+
+            if (GameObject.FindGameObjectsWithTag("Player").Length <= 0)
+            {
+                hp.GetComponent<Text>().text = "Health: " + 0;
+            }
         }
     }
 }
