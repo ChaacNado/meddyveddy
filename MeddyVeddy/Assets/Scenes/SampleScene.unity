@@ -1965,12 +1965,7 @@ PrefabInstance:
     - target: {fileID: 1858548003856420758, guid: ab007a8106c4e5f4aaaafd6de5e6dd54,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5463350457322668284, guid: ab007a8106c4e5f4aaaafd6de5e6dd54,
-        type: 3}
-      propertyPath: viewRadius
-      value: 5
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ab007a8106c4e5f4aaaafd6de5e6dd54, type: 3}
