@@ -39,10 +39,6 @@ public class Enemy : LivingEntity
     float myCollisionRadius;
     float targetCollisionRadius;
 
-    float alertDuration = 5;
-    float alertTime;
-    float alertTimeVariation = 2f;
-
     bool hasTarget;
     bool onAlert;
     public bool inSameRoom;
@@ -54,7 +50,6 @@ public class Enemy : LivingEntity
         fow = GetComponent<FieldOfView>();
         normalSpeed = GetComponent<NavMeshAgent>().speed;
         bossSpeed = GetComponent<NavMeshAgent>().speed / 3;
-        alertTime = alertDuration;
 
         if (isBoss)
         {
@@ -147,13 +142,6 @@ public class Enemy : LivingEntity
                         if (!isBoss)
                         {
                             GetComponent<NavMeshAgent>().speed = normalSpeed * 0.75f;
-                        }
-
-                        alertTime -= Time.deltaTime;
-                        if (alertTime <= 0 + Random.Range(-alertTimeVariation, alertTimeVariation))
-                        {
-                            onAlert = false;
-                            alertTime = alertDuration;
                         }
                     }
                 }
