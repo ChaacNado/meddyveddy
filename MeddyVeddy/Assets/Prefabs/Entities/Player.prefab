@@ -17,7 +17,6 @@ GameObject:
   - component: {fileID: 1532146508573318039}
   - component: {fileID: -8146252497673941538}
   - component: {fileID: 7249204664565090530}
-  - component: {fileID: 7519444692862958217}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -222,20 +221,6 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!114 &7519444692862958217
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1532146508573318024}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 768a89facf9392e4a8e6d97e17ed2ac2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hp: {fileID: 0}
-  score: {fileID: 0}
 --- !u!1 &3042943324551028849
 GameObject:
   m_ObjectHideFlags: 0
