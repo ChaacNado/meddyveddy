@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE Room SYSTEM "room.dtd">
+<Room ID="e6c725b5-e331-454d-a55e-5931d4cb422f" height="7" time="2020-05-05 19:45:49.503" width="13">
+    <Dimensions>
+        <Dimension name="SIMILARITY" value="-1.0"/>
+        <Dimension name="SYMMETRY" value="-1.0"/>
+    </Dimensions>
+    <Tiles>
+        <Tile PosX="0" PosY="0" immutable="false" value="FLOOR"/>
+        <Tile PosX="1" PosY="0" immutable="false" value="FLOOR"/>
+        <Tile PosX="2" PosY="0" immutable="false" value="FLOOR"/>
+        <Tile PosX="3" PosY="0" immutable="false" value="TREASURE"/>
+        <Tile PosX="4" PosY="0" immutable="false" value="ENEMY"/>
+        <Tile PosX="5" PosY="0" immutable="false" value="FLOOR"/>
+        <Tile PosX="6" PosY="0" immutable="false" value="FLOOR"/>
+        <Tile PosX="7" PosY="0" immutable="false" value="FLOOR"/>
+        <Tile PosX="8" PosY="0" immutable="false" value="WALL"/>
+        <Tile PosX="9" PosY="0" immutable="false" value="WALL"/>
+        <Tile PosX="10" PosY="0" immutable="false" value="TREASURE"/>
+        <Tile PosX="11" PosY="0" immutable="false" value="FLOOR"/>
+        <Tile PosX="12" PosY="0" immutable="false" value="TREASURE"/>
+        <Tile PosX="0" PosY="1" immutable="false" value="FLOOR"/>
+        <Tile PosX="1" PosY="1" immutable="false" value="WALL"/>
+        <Tile PosX="2" PosY="1" immutable="false" value="FLOOR"/>
+        <Tile PosX="3" PosY="1" immutable="false" value="WALL"/>
+        <Tile PosX="4" PosY="1" immutable="false" value="FLOOR"/>
+        <Tile PosX="5" PosY="1" immutable="false" value="FLOOR"/>
+        <Tile PosX="6" PosY="1" immutable="false" value="FLOOR"/>
+        <Tile PosX="7" PosY="1" immutable="false" value="FLOOR"/>
+        <Tile PosX="8" PosY="1" immutable="false" value="FLOOR"/>
+        <Tile PosX="9" PosY="1" immutable="false" value="FLOOR"/>
+        <Tile PosX="10" PosY="1" immutable="false" value="FLOOR"/>
+        <Tile PosX="11" PosY="1" immutable="false" value="WALL"/>
+        <Tile PosX="12" PosY="1" immutable="false" value="FLOOR"/>
+        <Tile PosX="0" PosY="2" immutable="false" value="ENEMY"/>
+        <Tile PosX="1" PosY="2" immutable="false" value="WALL"/>
+        <Tile PosX="2" PosY="2" immutable="false" value="FLOOR"/>
+        <Tile PosX="3" PosY="2" immutable="false" value="TREASURE"/>
+        <Tile PosX="4" PosY="2" immutable="false" value="FLOOR"/>
+        <Tile PosX="5" PosY="2" immutable="false" value="FLOOR"/>
+        <Tile PosX="6" PosY="2" immutable="false" value="FLOOR"/>
+        <Tile PosX="7" PosY="2" immutable="false" value="FLOOR"/>
+        <Tile PosX="8" PosY="2" immutable="false" value="FLOOR"/>
+        <Tile PosX="9" PosY="2" immutable="false" value="ENEMY"/>
+        <Tile PosX="10" PosY="2" immutable="false" value="FLOOR"/>
+        <Tile PosX="11" PosY="2" immutable="false" value="FLOOR"/>
+        <Tile PosX="12" PosY="2" immutable="false" value="FLOOR"/>
+        <Tile PosX="0" PosY="3" immutable="false" value="DOOR"/>
+        <Tile PosX="1" PosY="3" immutable="false" value="FLOOR"/>
+        <Tile PosX="2" PosY="3" immutable="false" value="FLOOR"/>
+        <Tile PosX="3" PosY="3" immutable="false" value="FLOOR"/>
+        <Tile PosX="4" PosY="3" immutable="false" value="ENEMY"/>
+        <Tile PosX="5" PosY="3" immutable="false" value="ENEMY"/>
+        <Tile PosX="6" PosY="3" immutable="false" value="WALL"/>
+        <Tile PosX="7" PosY="3" immutable="false" value="TREASURE"/>
+        <Tile PosX="8" PosY="3" immutable="false" value="FLOOR"/>
+        <Tile PosX="9" PosY="3" immutable="false" value="ENEMY"/>
+        <Tile PosX="10" PosY="3" immutable="false" value="FLOOR"/>
+        <Tile PosX="11" PosY="3" immutable="false" value="FLOOR"/>
+        <Tile PosX="12" PosY="3" immutable="false" value="DOOR"/>
+        <Tile PosX="0" PosY="4" immutable="false" value="FLOOR"/>
+        <Tile PosX="1" PosY="4" immutable="false" value="FLOOR"/>
+        <Tile PosX="2" PosY="4" immutable="false" value="FLOOR"/>
+        <Tile PosX="3" PosY="4" immutable="false" value="ENEMY"/>
+        <Tile PosX="4" PosY="4" immutable="false" value="FLOOR"/>
+        <Tile PosX="5" PosY="4" immutable="false" value="FLOOR"/>
+        <Tile PosX="6" PosY="4" immutable="false" value="FLOOR"/>
+        <Tile PosX="7" PosY="4" immutable="false" value="FLOOR"/>
+        <Tile PosX="8" PosY="4" immutable="false" value="FLOOR"/>
+        <Tile PosX="9" PosY="4" immutable="false" value="TREASURE"/>
+        <Tile PosX="10" PosY="4" immutable="false" value="FLOOR"/>
+        <Tile PosX="11" PosY="4" immutable="false" value="WALL"/>
+        <Tile PosX="12" PosY="4" immutable="false" value="WALL"/>
+        <Tile PosX="0" PosY="5" immutable="false" value="WALL"/>
+        <Tile PosX="1" PosY="5" immutable="false" value="FLOOR"/>
+        <Tile PosX="2" PosY="5" immutable="false" value="FLOOR"/>
+        <Tile PosX="3" PosY="5" immutable="false" value="FLOOR"/>
+        <Tile PosX="4" PosY="5" immutable="false" value="FLOOR"/>
+        <Tile PosX="5" PosY="5" immutable="false" value="FLOOR"/>
+        <Tile PosX="6" PosY="5" immutable="false" value="FLOOR"/>
+        <Tile PosX="7" PosY="5" immutable="false" value="FLOOR"/>
+        <Tile PosX="8" PosY="5" immutable="false" value="FLOOR"/>
+        <Tile PosX="9" PosY="5" immutable="false" value="WALL"/>
+        <Tile PosX="10" PosY="5" immutable="false" value="TREASURE"/>
+        <Tile PosX="11" PosY="5" immutable="false" value="WALL"/>
+        <Tile PosX="12" PosY="5" immutable="false" value="FLOOR"/>
+        <Tile PosX="0" PosY="6" immutable="false" value="ENEMY"/>
+        <Tile PosX="1" PosY="6" immutable="false" value="FLOOR"/>
+        <Tile PosX="2" PosY="6" immutable="false" value="FLOOR"/>
+        <Tile PosX="3" PosY="6" immutable="false" value="FLOOR"/>
+        <Tile PosX="4" PosY="6" immutable="false" value="ENEMY"/>
+        <Tile PosX="5" PosY="6" immutable="false" value="FLOOR"/>
+        <Tile PosX="6" PosY="6" immutable="false" value="FLOOR"/>
+        <Tile PosX="7" PosY="6" immutable="false" value="FLOOR"/>
+        <Tile PosX="8" PosY="6" immutable="false" value="FLOOR"/>
+        <Tile PosX="9" PosY="6" immutable="false" value="FLOOR"/>
+        <Tile PosX="10" PosY="6" immutable="false" value="FLOOR"/>
+        <Tile PosX="11" PosY="6" immutable="false" value="ENEMY"/>
+        <Tile PosX="12" PosY="6" immutable="false" value="FLOOR"/>
+    </Tiles>
+    <Customs/>
+</Room>

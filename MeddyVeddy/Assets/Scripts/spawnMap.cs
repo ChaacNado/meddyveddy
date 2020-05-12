@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using UnityEngine.Windows;
+using UnityEngine.UI;
 
 public class spawnMap : MonoBehaviour
 {
@@ -18,12 +19,13 @@ public class spawnMap : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        Debug.Log("debug messages:");
     }
 
     public void SpawnMap(string input = "TestMap")
     {
-        string folderPath = Path.Combine(Application.dataPath, "Maps/" + input + "/dungeon/");
+        string folderPath = Path.Combine(System.IO.Directory.GetCurrentDirectory(), "Maps/" + input + "/dungeon/");
+        Debug.Log(System.IO.Directory.GetCurrentDirectory());
         string path = folderPath + "Entry.xml";
         FileInfo fileInfo = new FileInfo(path);
 

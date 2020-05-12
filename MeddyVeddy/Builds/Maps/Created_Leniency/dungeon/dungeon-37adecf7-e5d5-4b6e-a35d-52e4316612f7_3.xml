@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE Dungeon SYSTEM "room.dtd">
+<Dungeon ID="37adecf7-e5d5-4b6e-a35d-52e4316612f7">
+    <Rooms>
+        <Room ID="36d370e3-ea6f-40af-829b-401659dad218"/>
+        <Room ID="bdb29a98-413a-42ab-987a-30a0c4d36ab1"/>
+        <Room ID="0d883a6f-6f1e-4f1e-aba3-475151c29744"/>
+        <Room ID="f6566888-73c8-4ab1-a860-64db2def7968"/>
+    </Rooms>
+    <Connections>
+        <Connection From="36d370e3-ea6f-40af-829b-401659dad218" FromPosX="12" FromPosY="3" ID="game.RoomEdge@b139efb" to="bdb29a98-413a-42ab-987a-30a0c4d36ab1" toPosX="0" toPosY="3"/>
+    </Connections>
+    <Init PosX="0" PosY="0" ROOM_ID="36d370e3-ea6f-40af-829b-401659dad218"/>
+</Dungeon>

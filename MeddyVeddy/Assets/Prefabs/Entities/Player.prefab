@@ -140,7 +140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f67d9c22d42568c4ba45a3bdafd5a316, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingHealth: 15
+  startingHealth: 10
   moveSpeed: 5
   currentRoomID: 0
   disableNextDoor: 0

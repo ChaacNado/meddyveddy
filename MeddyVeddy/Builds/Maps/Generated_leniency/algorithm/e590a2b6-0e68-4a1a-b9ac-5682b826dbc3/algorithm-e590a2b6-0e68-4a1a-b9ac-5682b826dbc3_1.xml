@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE Run SYSTEM "algorithm.dtd">
+<Run ID="e590a2b6-0e68-4a1a-b9ac-5682b826dbc3">
+    <Dimensions>
+        <Dimension granularity="3.0" name="LENIENCY"/>
+        <Dimension granularity="3.0" name="NUMBER_MESO_PATTERN"/>
+    </Dimensions>
+    <Cells>
+        <Cell ROOM_ID="8582e68d-15a4-40b0-8477-75fe1c1241bc" fitness="0.9426867506478134"/>
+        <Cell ROOM_ID="1c8d9277-6cdc-4ad7-9a9f-251ddfa55680" fitness="0.9601420817121475"/>
+        <Cell ROOM_ID="b6bee491-bc0c-45cb-aed5-7492aade20eb" fitness="0.9587451034205337"/>
+        <Cell ROOM_ID="1c196920-b703-4783-b03c-7c1c7a3a56e7" fitness="0.9478551445236355"/>
+        <Cell ROOM_ID="5373ea13-7414-4afa-b697-ab136b3fe9e6" fitness="0.9696666435257276"/>
+        <Cell ROOM_ID="74c75db0-58e4-4cb0-9c0b-feecf20cff29" fitness="0.9559364725471085"/>
+        <Cell ROOM_ID="379b87d6-9467-40c7-9a8c-6d2062bb5b65" fitness="0.9292664578315312"/>
+        <Cell ROOM_ID="d208cb4a-3c02-4639-b55f-db2f69e5ac4a" fitness="0.9591128734507068"/>
+        <Cell ROOM_ID="e5a22dce-ff11-4877-965a-ee349ed736b4" fitness="0.9546691576698154"/>
+    </Cells>
+</Run>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE Run SYSTEM "algorithm.dtd">
+<Run ID="49c0b84c-f2ec-4236-b0e2-127091236525">
+    <Dimensions>
+        <Dimension granularity="10.0" name="LENIENCY"/>
+        <Dimension granularity="5.0" name="NUMBER_PATTERNS"/>
+    </Dimensions>
+    <Cells>
+        <Cell ROOM_ID="NULL"/>
+        <Cell ROOM_ID="NULL"/>
+        <Cell ROOM_ID="NULL"/>
+        <Cell ROOM_ID="a68cd546-19b1-494c-a309-9ab2f462dcf3" fitness="0.897138694638695"/>
+        <Cell ROOM_ID="ef0e9cb6-1729-49af-afba-bd6abc69b186" fitness="0.9251707221350077"/>
+        <Cell ROOM_ID="843e81f2-3449-4c3a-8399-a41768f763c9" fitness="0.9361291075429425"/>
+        <Cell ROOM_ID="676885ab-1e4b-4422-a385-d3e75e116ab5" fitness="0.9335810167555216"/>
+        <Cell ROOM_ID="eccc736b-1bc6-4109-b3b1-e1a113b7e432" fitness="0.9328076923076922"/>
+        <Cell ROOM_ID="294173b9-5a03-40e2-8e80-9bb2a5be90fe" fitness="0.9286305217060167"/>
+        <Cell ROOM_ID="df2b7d5f-d4b2-40a3-b016-b759acc2e0d1" fitness="0.9047625588697016"/>
+        <Cell ROOM_ID="NULL"/>
+        <Cell ROOM_ID="NULL"/>
+        <Cell ROOM_ID="98848a8b-aebe-4104-a01e-9b5485e68861" fitness="0.7575853886282253"/>
+        <Cell ROOM_ID="24e710eb-dd86-4a44-b0b4-d8a5f180ee36" fitness="0.8776657119476271"/>
+        <Cell ROOM_ID="673fbfea-84f5-4e64-867c-e735b83e9509" fitness="0.8957981803143094"/>
+        <Cell ROOM_ID="1f398d9e-f33b-4207-817b-de266419e01b" fitness="0.9050015182186233"/>
+        <Cell ROOM_ID="a2354202-1d41-453e-b2d2-c11cb278b258" fitness="0.9026282051282053"/>
+        <Cell ROOM_ID="a32a8247-92dc-4cee-afc0-025199e3a771" fitness="0.9039428246484699"/>
+        <Cell ROOM_ID="7054076d-7bc5-413f-b356-4c269408b533" fitness="0.8946573886639675"/>
+        <Cell ROOM_ID="92169d1a-581a-4d6c-a2fc-89cdfed5110b" fitness="0.8992323200992557"/>
+        <Cell ROOM_ID="NULL"/>
+        <Cell ROOM_ID="NULL"/>
+        <Cell ROOM_ID="NULL"/>
+        <Cell ROOM_ID="fea2a4d3-66e6-4a85-aaee-75b862bcad7d" fitness="0.8701756072874491"/>
+        <Cell ROOM_ID="56a65c6f-e97b-46d2-9aa3-572b5411c57d" fitness="0.8835728861831103"/>
+        <Cell ROOM_ID="244f65d2-3963-4e0b-b29c-650910c0d0e0" fitness="0.8911815818352842"/>
+        <Cell ROOM_ID="7a48ff88-5586-4421-9bde-eb726fc28854" fitness="0.890094625313545"/>
+        <Cell ROOM_ID="7170b1f0-969c-46cd-b17d-ed8c56a6ae42" fitness="0.8775742521367524"/>
+        <Cell ROOM_ID="788000bc-e01a-4a7f-be7f-e3763b46031a" fitness="0.8842071005917161"/>
+        <Cell ROOM_ID="f76bfc42-9adc-46a7-a75a-5e8b01f9bc92" fitness="0.8762319981633533"/>
+        <Cell ROOM_ID="NULL"/>
+        <Cell ROOM_ID="NULL"/>
+        <Cell ROOM_ID="f12ff36a-5474-4161-8d30-908a2fa9ea79" fitness="0.7968195266272193"/>
+        <Cell ROOM_ID="84275b66-2f82-4c79-ad4c-b4d3729f31da" fitness="0.8500790759721051"/>
+        <Cell ROOM_ID="38534ae4-3147-4eed-beec-00fadc399505" fitness="0.8704845085470088"/>
+        <Cell ROOM_ID="b07659f4-953b-4c9f-915f-8a1b59893f51" fitness="0.8742761452031114"/>
+        <Cell ROOM_ID="79ea84ef-a6e9-461e-9fb0-34fce9952971" fitness="0.8613697564454779"/>
+        <Cell ROOM_ID="1b026c57-1b14-48ea-bc9d-b0617ca6518d" fitness="0.8513042613636363"/>
+        <Cell ROOM_ID="982657aa-791d-41bb-b556-646d5122e353" fitness="0.8543253374532443"/>
+        <Cell ROOM_ID="0cdec910-504b-414e-a410-f26183440136" fitness="0.8571094830380293"/>
+        <Cell ROOM_ID="NULL"/>
+        <Cell ROOM_ID="NULL"/>
+        <Cell ROOM_ID="NULL"/>
+        <Cell ROOM_ID="e34af68f-b497-477a-9705-0efc3a4f646e" fitness="0.8287593482905986"/>
+        <Cell ROOM_ID="247bf4ac-974e-49bd-975f-860e61a5ef12" fitness="0.8393151879370631"/>
+        <Cell ROOM_ID="396b0fbc-2842-4b98-9c1b-1ace7df0e3f1" fitness="0.845433782509625"/>
+        <Cell ROOM_ID="01219161-49a0-453f-b8da-54c223a51345" fitness="0.8516649572649575"/>
+        <Cell ROOM_ID="db1198b9-79b5-4c0c-8c8b-fc8616aa346f" fitness="0.8329566721388368"/>
+        <Cell ROOM_ID="717a8d31-1e43-4096-a931-63c03d39060c" fitness="0.8245832142857141"/>
+        <Cell ROOM_ID="NULL"/>
+    </Cells>
+</Run>
